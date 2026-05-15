@@ -1,0 +1,708 @@
+{
+  "name": "numbers",
+  "origin": "voxgig-sdk",
+  "def": "numbers_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "url": "http://numbersapi.com"
+        },
+        "description": "The Numbers API provides interesting facts about numbers covering trivia, math, dates, and years. Users can easily access these facts by specifying the number and type in a simple URL structure.",
+        "servers": [
+          {
+            "description": "Numbers API Server",
+            "url": "http://numbersapi.com"
+          }
+        ],
+        "title": "Numbers API",
+        "version": "1.0.0"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "get_number_fact": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "found",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "number",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "text",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "get_number_fact",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "42",
+                        "kind": "param",
+                        "name": "number",
+                        "orig": "number",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": false,
+                        "kind": "query",
+                        "name": "fragment",
+                        "orig": "fragment",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "example": false,
+                        "kind": "query",
+                        "name": "json",
+                        "orig": "json",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "example": "default",
+                        "kind": "query",
+                        "name": "notfound",
+                        "orig": "notfound",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{number}/{type}",
+                  "parts": [
+                    "{number}",
+                    "{type}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "fragment",
+                      "json",
+                      "notfound",
+                      "number",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "get_number_trivia": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "found",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "number",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "text",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "get_number_trivia",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "42",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "number",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": false,
+                        "kind": "query",
+                        "name": "fragment",
+                        "orig": "fragment",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "example": false,
+                        "kind": "query",
+                        "name": "json",
+                        "orig": "json",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "example": "default",
+                        "kind": "query",
+                        "name": "notfound",
+                        "orig": "notfound",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{number}",
+                  "parts": [
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "number": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fragment",
+                      "id",
+                      "json",
+                      "notfound"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "random": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "found",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "number",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "text",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "random",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "type",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": false,
+                        "kind": "query",
+                        "name": "fragment",
+                        "orig": "fragment",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "example": false,
+                        "kind": "query",
+                        "name": "json",
+                        "orig": "json",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "max",
+                        "orig": "max",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "min",
+                        "orig": "min",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/random/{type}",
+                  "parts": [
+                    "random",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "type": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "fragment",
+                      "id",
+                      "json",
+                      "max",
+                      "min"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicGetNumberFactFlow": {
+          "entity": "get_number_fact",
+          "kind": "basic",
+          "name": "BasicGetNumberFactFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "get_number_fact_ref01",
+                "srcdatavar": "get_number_fact_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "get_number_fact01",
+                "number": "number01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-get_number_fact_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicGetNumberFactFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicGetNumberTriviaFlow": {
+          "entity": "get_number_trivia",
+          "kind": "basic",
+          "name": "BasicGetNumberTriviaFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "get_number_trivia_ref01",
+                "srcdatavar": "get_number_trivia_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "get_number_trivia01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-get_number_trivia_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicGetNumberTriviaFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRandomFlow": {
+          "entity": "random",
+          "kind": "basic",
+          "name": "BasicRandomFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "random_ref01",
+                "srcdatavar": "random_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "random01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-random_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRandomFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "numbers"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "numbers"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "numbers"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "numbers"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "numbers"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "numbers"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "numbers",
+  "Name": "Numbers",
+  "name_": "numbers",
+  "name-": "numbers",
+  "NAME": "NUMBERS"
+}

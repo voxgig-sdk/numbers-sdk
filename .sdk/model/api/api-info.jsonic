@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "http://numbersapi.com"
+      }
+      description: "The Numbers API provides interesting facts about numbers covering trivia, math, dates, and years. Users can easily access these facts by specifying the number and type in a simple URL structure."
+      servers: [
+        {
+          description: "Numbers API Server"
+          url: "http://numbersapi.com"
+        }
+      ]
+      title: "Numbers API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

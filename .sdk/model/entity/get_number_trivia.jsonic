@@ -1,0 +1,103 @@
+# Entity: get_number_trivia
+
+main: kit: entity: get_number_trivia: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "found"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "number"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "get_number_trivia"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "42"
+                kind: "param"
+                name: "id"
+                orig: "number"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: false
+                kind: "query"
+                name: "fragment"
+                orig: "fragment"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "json"
+                orig: "json"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "default"
+                kind: "query"
+                name: "notfound"
+                orig: "notfound"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{number}"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              number: "id"
+            }
+          }
+          select: {
+            exist: [
+              "fragment"
+              "id"
+              "json"
+              "notfound"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

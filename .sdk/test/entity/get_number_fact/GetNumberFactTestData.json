@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "get_number_fact": {
+      "GET_NUMBER_FACT00": {
+        "found": true,
+        "number": 41,
+        "text": "s2a",
+        "type": "s2b"
+      },
+      "GET_NUMBER_FACT01": {
+        "found": true,
+        "number": 81,
+        "text": "s52",
+        "type": "s53"
+      },
+      "GET_NUMBER_FACT02": {
+        "found": true,
+        "number": 121,
+        "text": "s7a",
+        "type": "s7b"
+      }
+    }
+  },
+  "new": {
+    "get_number_fact": {
+      "get_number_fact_ref01": {
+        "found": true,
+        "number": 161,
+        "text": "sa2",
+        "type": "sa3"
+      }
+    }
+  }
+}

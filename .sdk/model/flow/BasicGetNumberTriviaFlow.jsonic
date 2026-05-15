@@ -1,0 +1,32 @@
+# BasicGetNumberTriviaFlow
+
+main: kit: flow: BasicGetNumberTriviaFlow:
+{
+  entity: "get_number_trivia",
+  kind: "basic",
+  name: "BasicGetNumberTriviaFlow",
+  step: [
+    {
+      input: {
+        ref: "get_number_trivia_ref01",
+        srcdatavar: "get_number_trivia_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "get_number_trivia01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_number_trivia_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetNumberTriviaFlow"
+}

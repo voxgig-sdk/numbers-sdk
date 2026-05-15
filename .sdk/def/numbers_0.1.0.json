@@ -1,0 +1,364 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Numbers API",
+    "description": "The Numbers API provides interesting facts about numbers covering trivia, math, dates, and years. Users can easily access these facts by specifying the number and type in a simple URL structure.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "http://numbersapi.com"
+    }
+  },
+  "externalDocs": {
+    "description": "Numbers API Documentation",
+    "url": "http://numbersapi.com/#random/math"
+  },
+  "servers": [
+    {
+      "url": "http://numbersapi.com",
+      "description": "Numbers API Server"
+    }
+  ],
+  "paths": {
+    "/{number}/{type}": {
+      "get": {
+        "summary": "Get a fact about a number",
+        "description": "Returns an interesting fact about the specified number. The type parameter determines what kind of fact to return (trivia, math, date, or year).",
+        "operationId": "getNumberFact",
+        "parameters": [
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "description": "The number to get a fact about. Can be an integer, 'random', or a date in the format month/day for date type.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "integer": {
+                "value": "42",
+                "summary": "A specific number"
+              },
+              "random": {
+                "value": "random",
+                "summary": "Random number"
+              },
+              "date": {
+                "value": "1/1",
+                "summary": "January 1st (for date type)"
+              }
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of fact to return",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trivia",
+                "math",
+                "date",
+                "year"
+              ]
+            }
+          },
+          {
+            "name": "fragment",
+            "in": "query",
+            "required": false,
+            "description": "Return the fact as a sentence fragment that can be easily included as part of a sentence",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "notfound",
+            "in": "query",
+            "required": false,
+            "description": "Specifies what to return if the number is not found. Options: 'default' (return a canned message), 'floor' (return fact for largest number less than requested), 'ceil' (return fact for smallest number greater than requested)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default",
+                "floor",
+                "ceil"
+              ],
+              "default": "default"
+            }
+          },
+          {
+            "name": "json",
+            "in": "query",
+            "required": false,
+            "description": "Return the result as JSON",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a number fact",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "42 is the number of minutes in one degree of a circle."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "The fact about the number",
+                      "example": "42 is the number of minutes in one degree of a circle."
+                    },
+                    "number": {
+                      "type": "number",
+                      "description": "The number the fact is about",
+                      "example": 42
+                    },
+                    "found": {
+                      "type": "boolean",
+                      "description": "Whether a fact was found for the requested number",
+                      "example": true
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The type of the fact",
+                      "enum": [
+                        "trivia",
+                        "math",
+                        "date",
+                        "year"
+                      ],
+                      "example": "math"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Number not found (when using strict mode)",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{number}": {
+      "get": {
+        "summary": "Get a trivia fact about a number",
+        "description": "Returns a trivia fact about the specified number. This is a shorthand for /{number}/trivia",
+        "operationId": "getNumberTrivia",
+        "parameters": [
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "description": "The number to get a trivia fact about. Can be an integer or 'random'.",
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "integer": {
+                "value": "42",
+                "summary": "A specific number"
+              },
+              "random": {
+                "value": "random",
+                "summary": "Random number"
+              }
+            }
+          },
+          {
+            "name": "fragment",
+            "in": "query",
+            "required": false,
+            "description": "Return the fact as a sentence fragment",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "notfound",
+            "in": "query",
+            "required": false,
+            "description": "Specifies what to return if the number is not found",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default",
+                "floor",
+                "ceil"
+              ],
+              "default": "default"
+            }
+          },
+          {
+            "name": "json",
+            "in": "query",
+            "required": false,
+            "description": "Return the result as JSON",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a number trivia fact",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "42 is the answer to the Ultimate Question of Life, the Universe, and Everything."
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "The trivia fact about the number"
+                    },
+                    "number": {
+                      "type": "number",
+                      "description": "The number the fact is about"
+                    },
+                    "found": {
+                      "type": "boolean",
+                      "description": "Whether a fact was found for the requested number"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The type of the fact",
+                      "example": "trivia"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/random/{type}": {
+      "get": {
+        "summary": "Get a random number fact",
+        "description": "Returns a fact about a random number of the specified type",
+        "operationId": "getRandomNumberFact",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "description": "The type of fact to return",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "trivia",
+                "math",
+                "date",
+                "year"
+              ]
+            }
+          },
+          {
+            "name": "min",
+            "in": "query",
+            "required": false,
+            "description": "Minimum number for random selection",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number for random selection",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "fragment",
+            "in": "query",
+            "required": false,
+            "description": "Return the fact as a sentence fragment",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "json",
+            "in": "query",
+            "required": false,
+            "description": "Return the result as JSON",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with a random number fact",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "The fact about the number"
+                    },
+                    "number": {
+                      "type": "number",
+                      "description": "The number the fact is about"
+                    },
+                    "found": {
+                      "type": "boolean",
+                      "description": "Whether a fact was found"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The type of the fact"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "facts",
+      "description": "Number facts operations"
+    }
+  ]
+}

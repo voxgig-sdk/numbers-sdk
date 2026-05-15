@@ -1,0 +1,33 @@
+# BasicGetNumberFactFlow
+
+main: kit: flow: BasicGetNumberFactFlow:
+{
+  entity: "get_number_fact",
+  kind: "basic",
+  name: "BasicGetNumberFactFlow",
+  step: [
+    {
+      input: {
+        ref: "get_number_fact_ref01",
+        srcdatavar: "get_number_fact_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "get_number_fact01",
+        number: "number01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-get_number_fact_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetNumberFactFlow"
+}

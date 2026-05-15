@@ -1,0 +1,110 @@
+# Entity: random
+
+main: kit: entity: random: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "found"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "number"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "random"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "type"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: false
+                kind: "query"
+                name: "fragment"
+                orig: "fragment"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "json"
+                orig: "json"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "max"
+                orig: "max"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "min"
+                orig: "min"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/random/{type}"
+          parts: [
+            "random"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              type: "id"
+            }
+          }
+          select: {
+            exist: [
+              "fragment"
+              "id"
+              "json"
+              "max"
+              "min"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,28 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: get_number_fact: {
+    path: "/{number}/{type}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_number_trivia: {
+    path: "/{number}": {
+      rename: param: "number": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: random: {
+    path: "/random/{type}": {
+      rename: param: "type": *"id"
+      op: load: method: *GET
+    }
+  }
+
+}
