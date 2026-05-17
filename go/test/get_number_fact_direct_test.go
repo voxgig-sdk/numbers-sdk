@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/numbers-sdk"
-	"github.com/voxgig-sdk/numbers-sdk/core"
+	sdk "github.com/voxgig-sdk/numbers-sdk/go"
+	"github.com/voxgig-sdk/numbers-sdk/go/core"
 )
 
 func TestGetNumberFactDirect(t *testing.T) {

@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/numbers-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/numbers-sdk/core"
+	"github.com/voxgig-sdk/numbers-sdk/go/core"
 )
 
 func preparePathUtil(ctx *core.Context) string {

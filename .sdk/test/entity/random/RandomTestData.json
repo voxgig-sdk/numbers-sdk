@@ -5,19 +5,22 @@
         "found": true,
         "number": 41,
         "text": "s2a",
-        "type": "s2b"
+        "type": "s2b",
+        "id": "RANDOM00"
       },
       "RANDOM01": {
         "found": true,
         "number": 81,
         "text": "s52",
-        "type": "s53"
+        "type": "s53",
+        "id": "RANDOM01"
       },
       "RANDOM02": {
         "found": true,
         "number": 121,
         "text": "s7a",
-        "type": "s7b"
+        "type": "s7b",
+        "id": "RANDOM02"
       }
     }
   },

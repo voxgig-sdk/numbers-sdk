@@ -5,19 +5,22 @@
         "found": true,
         "number": 41,
         "text": "s2a",
-        "type": "s2b"
+        "type": "s2b",
+        "id": "GET_NUMBER_TRIVIA00"
       },
       "GET_NUMBER_TRIVIA01": {
         "found": true,
         "number": 81,
         "text": "s52",
-        "type": "s53"
+        "type": "s53",
+        "id": "GET_NUMBER_TRIVIA01"
       },
       "GET_NUMBER_TRIVIA02": {
         "found": true,
         "number": 121,
         "text": "s7a",
-        "type": "s7b"
+        "type": "s7b",
+        "id": "GET_NUMBER_TRIVIA02"
       }
     }
   },

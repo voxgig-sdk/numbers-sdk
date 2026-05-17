@@ -1,10 +1,10 @@
 package voxgignumberssdk
 
 import (
-	"github.com/voxgig-sdk/numbers-sdk/core"
-	"github.com/voxgig-sdk/numbers-sdk/entity"
-	"github.com/voxgig-sdk/numbers-sdk/feature"
-	_ "github.com/voxgig-sdk/numbers-sdk/utility"
+	"github.com/voxgig-sdk/numbers-sdk/go/core"
+	"github.com/voxgig-sdk/numbers-sdk/go/entity"
+	"github.com/voxgig-sdk/numbers-sdk/go/feature"
+	_ "github.com/voxgig-sdk/numbers-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

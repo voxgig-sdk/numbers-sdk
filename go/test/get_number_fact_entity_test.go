@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/numbers-sdk"
-	"github.com/voxgig-sdk/numbers-sdk/core"
+	sdk "github.com/voxgig-sdk/numbers-sdk/go"
+	"github.com/voxgig-sdk/numbers-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/numbers-sdk/go/utility/struct"
 )
 
 func TestGetNumberFactEntity(t *testing.T) {
