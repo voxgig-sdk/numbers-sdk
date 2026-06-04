@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID': idmap,
     'NUMBERS_TEST_LIVE': 'FALSE',
     'NUMBERS_TEST_EXPLAIN': 'FALSE',
-    'NUMBERS_APIKEY': 'NONE',
   })
 
   idmap = env['NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new NumbersSDK(merge([
       {
-        apikey: env.NUMBERS_APIKEY,
       },
       extra
     ]))

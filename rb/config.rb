@@ -15,9 +15,6 @@ module NumbersConfig
       },
       "options" => {
         "base" => "http://numbersapi.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

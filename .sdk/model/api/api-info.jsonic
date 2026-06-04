@@ -16,8 +16,29 @@ main: {
       ]
       title: "Numbers API"
       version: "1.0.0"
+      tagline: "Interesting facts about numbers — trivia, math, dates, and years"
+      homepage: "http://numbersapi.com"
+      docs_url: "http://numbersapi.com"
+      license_short: "No explicit license published; treat as best-effort public service"
+      license_md: `- The Numbers API does not publish an explicit licence on its homepage.
+- Treat returned facts as a best-effort free public service.
+- The original endpoint is HTTP-only and has historically had no CORS headers, so browser usage may require a proxy.
+- The freepublicapis.com community catalogue currently lists this API as unreliable; expect intermittent outages.`
+      about_md: `The Numbers API is a small public service that returns short, human-readable facts about numbers. It covers four broad fact categories: **trivia**, **math**, **dates**, and **years**.
+
+What you get from the API:
+
+- A plain-text (or JSON) fact about a given integer, date, or year.
+- Random facts when you don't have a specific number in mind.
+- Optional filtering by fact category (trivia / math / date / year).
+
+The service is unauthenticated and free to use. It is served over HTTP from \`numbersapi.com\`. As of mid-2026 the freepublicapis.com catalogue reports the upstream as unreliable, so production callers should cache responses and degrade gracefully when the upstream is unreachable.`
+      entity_desc: {
+        get_number_fact: "Look up a fact for a specific number, date, or year — typically called against paths like `/{number}`, `/{month}/{day}/date`, or `/{year}/year`."
+        get_number_trivia: "Look up a trivia-category fact for a specific number, typically called against `/{number}/trivia`."
+        random: "Fetch a random fact across any category, typically called against `/random` (optionally `/random/trivia`, `/random/math`, `/random/date`, `/random/year`)."
+      }
+      auth: false
     }
   }
-}
-
 }

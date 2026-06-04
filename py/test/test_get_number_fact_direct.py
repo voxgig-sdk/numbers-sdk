@@ -70,14 +70,12 @@ def _get_number_fact_direct_setup(mockres):
     env = runner.env_override({
         "NUMBERS_TEST_GET_NUMBER_FACT_ENTID": {},
         "NUMBERS_TEST_LIVE": "FALSE",
-        "NUMBERS_APIKEY": "NONE",
     })
 
     live = env.get("NUMBERS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("NUMBERS_APIKEY"),
         }
         client = NumbersSDK(merged_opts)
         return {

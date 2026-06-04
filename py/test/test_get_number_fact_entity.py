@@ -91,7 +91,6 @@ def _get_number_fact_basic_setup(extra):
         "NUMBERS_TEST_GET_NUMBER_FACT_ENTID": idmap,
         "NUMBERS_TEST_LIVE": "FALSE",
         "NUMBERS_TEST_EXPLAIN": "FALSE",
-        "NUMBERS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +101,6 @@ def _get_number_fact_basic_setup(extra):
     if env.get("NUMBERS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NUMBERS_APIKEY"),
             },
             extra or {},
         ])

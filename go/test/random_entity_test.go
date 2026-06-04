@@ -117,7 +117,6 @@ func randomBasicSetup(extra map[string]any) *entityTestSetup {
 		"NUMBERS_TEST_RANDOM_ENTID": idmap,
 		"NUMBERS_TEST_LIVE":      "FALSE",
 		"NUMBERS_TEST_EXPLAIN":   "FALSE",
-		"NUMBERS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["NUMBERS_TEST_RANDOM_ENTID"])
@@ -128,7 +127,6 @@ func randomBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["NUMBERS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["NUMBERS_APIKEY"],
 			},
 			extra,
 		})
