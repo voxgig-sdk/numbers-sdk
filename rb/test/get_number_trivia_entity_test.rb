@@ -82,6 +82,7 @@ def get_number_trivia_basic_setup(extra)
     "NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID" => idmap,
     "NUMBERS_TEST_LIVE" => "FALSE",
     "NUMBERS_TEST_EXPLAIN" => "FALSE",
+    "NUMBERS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -93,6 +94,7 @@ def get_number_trivia_basic_setup(extra)
   if env["NUMBERS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["NUMBERS_APIKEY"],
       },
       extra || {},
     ])

@@ -1,20 +1,8 @@
 # Numbers SDK
 
-Interesting facts about numbers — trivia, math, dates, and years
+Numbers API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Numbers API
-
-The Numbers API is a small public service that returns short, human-readable facts about numbers. It covers four broad fact categories: **trivia**, **math**, **dates**, and **years**.
-
-What you get from the API:
-
-- A plain-text (or JSON) fact about a given integer, date, or year.
-- Random facts when you don't have a specific number in mind.
-- Optional filtering by fact category (trivia / math / date / year).
-
-The service is unauthenticated and free to use. It is served over HTTP from `numbersapi.com`. As of mid-2026 the freepublicapis.com catalogue reports the upstream as unreliable, so production callers should cache responses and degrade gracefully when the upstream is unreachable.
 
 ## Try it
 
@@ -48,27 +36,31 @@ gem install numbers-sdk
 luarocks install numbers-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { NumbersSDK } from 'numbers'
 
-const client = new NumbersSDK({})
+const client = new NumbersSDK({
+  apikey: process.env.NUMBERS_APIKEY,
+})
 
+// Load getnumberfact data
+const getnumberfact = await client.GetNumberFact().load({})
+console.log(getnumberfact.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetNumberFact** | Look up a fact for a specific number, date, or year — typically called against paths like `/{number}`, `/{month}/{day}/date`, or `/{year}/year`. | `/{number}/{type}` |
-| **GetNumberTrivia** | Look up a trivia-category fact for a specific number, typically called against `/{number}/trivia`. | `/{number}` |
-| **Random** | Fetch a random fact across any category, typically called against `/random` (optionally `/random/trivia`, `/random/math`, `/random/date`, `/random/year`). | `/random/{type}` |
+| **GetNumberFact** |  | `/{number}/{type}` |
+| **GetNumberTrivia** |  | `/{number}` |
+| **Random** |  | `/random/{type}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,15 +102,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from numbers_sdk import NumbersSDK
 
-client = NumbersSDK({})
+client = NumbersSDK({
+    "apikey": os.environ.get("NUMBERS_APIKEY"),
+})
 
 
 # Load a specific getnumberfact
-getnumberfact, err = client.GetNumberFact(None).load(
-    {"id": "example_id"}, None
-)
+getnumberfact, err = client.GetNumberFact().load({"id": "example_id"})
+print(getnumberfact)
 ```
 
 ### PHP
@@ -127,13 +121,14 @@ getnumberfact, err = client.GetNumberFact(None).load(
 <?php
 require_once 'numbers_sdk.php';
 
-$client = new NumbersSDK([]);
+$client = new NumbersSDK([
+    "apikey" => getenv("NUMBERS_APIKEY"),
+]);
 
 
 // Load a specific getnumberfact
-[$getnumberfact, $err] = $client->GetNumberFact(null)->load(
-    ["id" => "example_id"], null
-);
+[$getnumberfact, $err] = $client->GetNumberFact()->load(["id" => "example_id"]);
+print_r($getnumberfact);
 ```
 
 ### Golang
@@ -141,8 +136,13 @@ $client = new NumbersSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/numbers-sdk/go"
 
-client := sdk.NewNumbersSDK(map[string]any{})
+client := sdk.NewNumbersSDK(map[string]any{
+    "apikey": os.Getenv("NUMBERS_APIKEY"),
+})
 
+// Load getnumberfact data
+getnumberfact, err := client.GetNumberFact(nil).Load(map[string]any{}, nil)
+fmt.Println(getnumberfact)
 ```
 
 ### Ruby
@@ -150,13 +150,14 @@ client := sdk.NewNumbersSDK(map[string]any{})
 ```ruby
 require_relative "Numbers_sdk"
 
-client = NumbersSDK.new({})
+client = NumbersSDK.new({
+  "apikey" => ENV["NUMBERS_APIKEY"],
+})
 
 
 # Load a specific getnumberfact
-getnumberfact, err = client.GetNumberFact(nil).load(
-  { "id" => "example_id" }, nil
-)
+getnumberfact, err = client.GetNumberFact().load({ "id" => "example_id" })
+puts getnumberfact
 ```
 
 ### Lua
@@ -164,13 +165,14 @@ getnumberfact, err = client.GetNumberFact(nil).load(
 ```lua
 local sdk = require("numbers_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("NUMBERS_APIKEY"),
+})
 
 
 -- Load a specific getnumberfact
-local getnumberfact, err = client:GetNumberFact(nil):load(
-  { id = "example_id" }, nil
-)
+local getnumberfact, err = client:GetNumberFact():load({ id = "example_id" })
+print(getnumberfact)
 ```
 
 ## Unit testing in offline mode
@@ -189,25 +191,21 @@ const result = await client.GetNumberFact().load({ id: 'test01' })
 ### Python
 
 ```python
-client = NumbersSDK.test(None, None)
-result, err = client.GetNumberFact(None).load(
-    {"id": "test01"}, None
-)
+client = NumbersSDK.test()
+result, err = client.GetNumberFact().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = NumbersSDK::test(null, null);
-[$result, $err] = $client->GetNumberFact(null)->load(
-    ["id" => "test01"], null
-);
+$client = NumbersSDK::test();
+[$result, $err] = $client->GetNumberFact()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetNumberFact(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -216,19 +214,15 @@ result, err := client.GetNumberFact(nil).Load(
 ### Ruby
 
 ```ruby
-client = NumbersSDK.test(nil, nil)
-result, err = client.GetNumberFact(nil).load(
-  { "id" => "test01" }, nil
-)
+client = NumbersSDK.test
+result, err = client.GetNumberFact().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetNumberFact(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetNumberFact():load({ id = "test01" })
 ```
 
 ## How it works
@@ -332,15 +326,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Numbers API
-
-- Upstream: [http://numbersapi.com](http://numbersapi.com)
-
-- The Numbers API does not publish an explicit licence on its homepage.
-- Treat returned facts as a best-effort free public service.
-- The original endpoint is HTTP-only and has historically had no CORS headers, so browser usage may require a proxy.
-- The freepublicapis.com community catalogue currently lists this API as unreliable; expect intermittent outages.
 
 ---
 

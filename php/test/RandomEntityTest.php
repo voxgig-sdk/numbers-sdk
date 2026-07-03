@@ -85,6 +85,7 @@ function random_basic_setup($extra)
         "NUMBERS_TEST_RANDOM_ENTID" => $idmap,
         "NUMBERS_TEST_LIVE" => "FALSE",
         "NUMBERS_TEST_EXPLAIN" => "FALSE",
+        "NUMBERS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -96,6 +97,7 @@ function random_basic_setup($extra)
     if ($env["NUMBERS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["NUMBERS_APIKEY"],
             ],
             $extra ?? [],
         ]);

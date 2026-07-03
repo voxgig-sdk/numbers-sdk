@@ -91,6 +91,7 @@ function random_basic_setup(extra)
     ["NUMBERS_TEST_RANDOM_ENTID"] = idmap,
     ["NUMBERS_TEST_LIVE"] = "FALSE",
     ["NUMBERS_TEST_EXPLAIN"] = "FALSE",
+    ["NUMBERS_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function random_basic_setup(extra)
   if env["NUMBERS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["NUMBERS_APIKEY"],
       },
       extra or {},
     })

@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID': {},
     'NUMBERS_TEST_LIVE': 'FALSE',
+    'NUMBERS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.NUMBERS_TEST_LIVE
 
   if (live) {
     const client = new NumbersSDK({
+      apikey: env.NUMBERS_APIKEY,
     })
 
     let idmap: any = env['NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID']

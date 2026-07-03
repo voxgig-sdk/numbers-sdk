@@ -70,12 +70,14 @@ function get_number_trivia_direct_setup(mockres)
   local env = runner.env_override({
     ["NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID"] = {},
     ["NUMBERS_TEST_LIVE"] = "FALSE",
+    ["NUMBERS_APIKEY"] = "NONE",
   })
 
   local live = env["NUMBERS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["NUMBERS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
