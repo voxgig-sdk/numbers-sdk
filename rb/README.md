@@ -10,13 +10,13 @@ The Ruby SDK for the Numbers API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install numbers-sdk
+gem install voxgig-sdk-numbers
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "numbers-sdk"
+gem "voxgig-sdk-numbers"
 ```
 
 Then run:

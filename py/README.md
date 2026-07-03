@@ -10,7 +10,7 @@ The Python SDK for the Numbers API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install numbers-sdk
+pip install voxgig-sdk-numbers
 ```
 
 Or install from source:

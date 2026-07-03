@@ -8,12 +8,14 @@ source = {
   dir = "numbers-sdk/lua"
 }
 description = {
-  summary = "Numbers SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Numbers public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/numbers-sdk",
+  issues_url = "https://github.com/voxgig-sdk/numbers-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "numbers" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

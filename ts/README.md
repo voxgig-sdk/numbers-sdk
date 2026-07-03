@@ -10,7 +10,7 @@ The TypeScript SDK for the Numbers API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install numbers
+npm install @voxgig-sdk/numbers
 ```
 ## Tutorial: your first API call
 

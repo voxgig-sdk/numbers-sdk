@@ -10,7 +10,7 @@ The PHP SDK for the Numbers API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/numbers-sdk
+composer require voxgig-sdk/numbers
 ```
 
 
