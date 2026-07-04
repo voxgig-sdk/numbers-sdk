@@ -206,42 +206,21 @@ class NumbersSDK {
 
 
 
-  _get_number_fact?: GetNumberFactEntity
-
-  // Idiomatic facade: `client.get_number_fact.list()` / `client.get_number_fact.load({ id })`.
-  get get_number_fact(): GetNumberFactEntity {
-    return (this._get_number_fact ??= new GetNumberFactEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_number_fact` instead. */
+  // Entity access: `client.GetNumberFact().list()` / `client.GetNumberFact().load({ id })`.
   GetNumberFact(data?: any) {
     const self = this
     return new GetNumberFactEntity(self,data)
   }
 
 
-  _get_number_trivia?: GetNumberTriviaEntity
-
-  // Idiomatic facade: `client.get_number_trivia.list()` / `client.get_number_trivia.load({ id })`.
-  get get_number_trivia(): GetNumberTriviaEntity {
-    return (this._get_number_trivia ??= new GetNumberTriviaEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_number_trivia` instead. */
+  // Entity access: `client.GetNumberTrivia().list()` / `client.GetNumberTrivia().load({ id })`.
   GetNumberTrivia(data?: any) {
     const self = this
     return new GetNumberTriviaEntity(self,data)
   }
 
 
-  _random?: RandomEntity
-
-  // Idiomatic facade: `client.random.list()` / `client.random.load({ id })`.
-  get random(): RandomEntity {
-    return (this._random ??= new RandomEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.random` instead. */
+  // Entity access: `client.Random().list()` / `client.Random().load({ id })`.
   Random(data?: any) {
     const self = this
     return new RandomEntity(self,data)

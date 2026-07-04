@@ -133,7 +133,7 @@ Alias for `NumbersSDK.test()`.
 ## GetNumberFactEntity
 
 ```ts
-const get_number_fact = client.get_number_fact
+const get_number_fact = client.GetNumberFact()
 ```
 
 ### Fields
@@ -152,7 +152,7 @@ const get_number_fact = client.get_number_fact
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_number_fact.load({ id: 'get_number_fact_id' })
+const result = await client.GetNumberFact().load({ id: 'get_number_fact_id' })
 ```
 
 ### Common Methods
@@ -186,7 +186,7 @@ Return a copy of the entity options.
 ## GetNumberTriviaEntity
 
 ```ts
-const get_number_trivia = client.get_number_trivia
+const get_number_trivia = client.GetNumberTrivia()
 ```
 
 ### Fields
@@ -205,7 +205,7 @@ const get_number_trivia = client.get_number_trivia
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_number_trivia.load({ id: 'get_number_trivia_id' })
+const result = await client.GetNumberTrivia().load({ id: 'get_number_trivia_id' })
 ```
 
 ### Common Methods
@@ -239,7 +239,7 @@ Return a copy of the entity options.
 ## RandomEntity
 
 ```ts
-const random = client.random
+const random = client.Random()
 ```
 
 ### Fields
@@ -258,7 +258,7 @@ const random = client.random
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.random.load({ id: 'random_id' })
+const result = await client.Random().load({ id: 'random_id' })
 ```
 
 ### Common Methods

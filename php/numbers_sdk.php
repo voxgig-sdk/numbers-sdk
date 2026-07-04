@@ -233,10 +233,10 @@ class NumbersSDK
 
     private $_get_number_fact = null;
 
-    // Idiomatic facade: $client->get_number_fact()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetNumberFact() (PHP method
-    // names are case-insensitive).
-    public function get_number_fact($data = null)
+    // Canonical facade: $client->GetNumberFact()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_number_fact()
+    // resolves here too.
+    public function GetNumberFact($data = null)
     {
         require_once __DIR__ . '/entity/get_number_fact_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class NumbersSDK
 
     private $_get_number_trivia = null;
 
-    // Idiomatic facade: $client->get_number_trivia()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetNumberTrivia() (PHP method
-    // names are case-insensitive).
-    public function get_number_trivia($data = null)
+    // Canonical facade: $client->GetNumberTrivia()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_number_trivia()
+    // resolves here too.
+    public function GetNumberTrivia($data = null)
     {
         require_once __DIR__ . '/entity/get_number_trivia_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class NumbersSDK
 
     private $_random = null;
 
-    // Idiomatic facade: $client->random()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Random() (PHP method
-    // names are case-insensitive).
-    public function random($data = null)
+    // Canonical facade: $client->Random()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->random()
+    // resolves here too.
+    public function Random($data = null)
     {
         require_once __DIR__ . '/entity/random_entity.php';
         if ($data === null) {

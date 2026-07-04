@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## GetNumberFactEntity
 
 ```lua
-local get_number_fact = client:get_number_fact(nil)
+local get_number_fact = client:GetNumberFact(nil)
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ local get_number_fact = client:get_number_fact(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_number_fact():load({ id = "get_number_fact_id" })
+local result, err = client:GetNumberFact():load({ id = "get_number_fact_id" })
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## GetNumberTriviaEntity
 
 ```lua
-local get_number_trivia = client:get_number_trivia(nil)
+local get_number_trivia = client:GetNumberTrivia(nil)
 ```
 
 ### Fields
@@ -165,7 +165,7 @@ local get_number_trivia = client:get_number_trivia(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:get_number_trivia():load({ id = "get_number_trivia_id" })
+local result, err = client:GetNumberTrivia():load({ id = "get_number_trivia_id" })
 ```
 
 ### Common Methods
@@ -201,7 +201,7 @@ Return the entity name.
 ## RandomEntity
 
 ```lua
-local random = client:random(nil)
+local random = client:Random(nil)
 ```
 
 ### Fields
@@ -220,7 +220,7 @@ local random = client:random(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:random():load({ id = "random_id" })
+local result, err = client:Random():load({ id = "random_id" })
 ```
 
 ### Common Methods

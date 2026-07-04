@@ -4,49 +4,47 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class GetNumberFact:
-    found: Optional[bool] = None
-    number: Optional[float] = None
-    text: Optional[str] = None
-    type: Optional[str] = None
+class GetNumberFact(TypedDict, total=False):
+    found: bool
+    number: float
+    text: str
+    type: str
 
 
-@dataclass
-class GetNumberFactLoadMatch:
+class GetNumberFactLoadMatch(TypedDict):
     number: str
     type: str
 
 
-@dataclass
-class GetNumberTrivia:
-    found: Optional[bool] = None
-    number: Optional[float] = None
-    text: Optional[str] = None
-    type: Optional[str] = None
+class GetNumberTrivia(TypedDict, total=False):
+    found: bool
+    number: float
+    text: str
+    type: str
 
 
-@dataclass
-class GetNumberTriviaLoadMatch:
+class GetNumberTriviaLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Random:
-    found: Optional[bool] = None
-    number: Optional[float] = None
-    text: Optional[str] = None
-    type: Optional[str] = None
+class Random(TypedDict, total=False):
+    found: bool
+    number: float
+    text: str
+    type: str
 
 
-@dataclass
-class RandomLoadMatch:
+class RandomLoadMatch(TypedDict):
     id: str
-

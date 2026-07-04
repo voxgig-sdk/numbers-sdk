@@ -208,39 +208,21 @@ class NumbersSDK
   end
 
 
-  # Idiomatic facade: client.get_number_fact.list / client.get_number_fact.load({ "id" => ... })
-  def get_number_fact
-    require_relative 'entity/get_number_fact_entity'
-    @get_number_fact ||= GetNumberFactEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_number_fact instead.
+  # Canonical facade: client.GetNumberFact.list / client.GetNumberFact.load({ "id" => ... })
   def GetNumberFact(data = nil)
     require_relative 'entity/get_number_fact_entity'
     GetNumberFactEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_number_trivia.list / client.get_number_trivia.load({ "id" => ... })
-  def get_number_trivia
-    require_relative 'entity/get_number_trivia_entity'
-    @get_number_trivia ||= GetNumberTriviaEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_number_trivia instead.
+  # Canonical facade: client.GetNumberTrivia.list / client.GetNumberTrivia.load({ "id" => ... })
   def GetNumberTrivia(data = nil)
     require_relative 'entity/get_number_trivia_entity'
     GetNumberTriviaEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.random.list / client.random.load({ "id" => ... })
-  def random
-    require_relative 'entity/random_entity'
-    @random ||= RandomEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.random instead.
+  # Canonical facade: client.Random.list / client.Random.load({ "id" => ... })
   def Random(data = nil)
     require_relative 'entity/random_entity'
     RandomEntity.new(self, data)

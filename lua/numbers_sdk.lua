@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:get_number_fact():list() / client:get_number_fact():load({ id = ... })
-function NumbersSDK:get_number_fact(data)
+-- Idiomatic facade: client:GetNumberFact():list() / client:GetNumberFact():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NumbersSDK:GetNumberFact(data)
   local EntityMod = require("entity.get_number_fact_entity")
   if data == nil then
     if self._get_number_fact == nil then
@@ -256,15 +257,10 @@ function NumbersSDK:get_number_fact(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_number_fact() instead.
-function NumbersSDK:GetNumberFact(data)
-  local EntityMod = require("entity.get_number_fact_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_number_trivia():list() / client:get_number_trivia():load({ id = ... })
-function NumbersSDK:get_number_trivia(data)
+-- Idiomatic facade: client:GetNumberTrivia():list() / client:GetNumberTrivia():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NumbersSDK:GetNumberTrivia(data)
   local EntityMod = require("entity.get_number_trivia_entity")
   if data == nil then
     if self._get_number_trivia == nil then
@@ -275,15 +271,10 @@ function NumbersSDK:get_number_trivia(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_number_trivia() instead.
-function NumbersSDK:GetNumberTrivia(data)
-  local EntityMod = require("entity.get_number_trivia_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:random():list() / client:random():load({ id = ... })
-function NumbersSDK:random(data)
+-- Idiomatic facade: client:Random():list() / client:Random():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NumbersSDK:Random(data)
   local EntityMod = require("entity.random_entity")
   if data == nil then
     if self._random == nil then
@@ -291,12 +282,6 @@ function NumbersSDK:random(data)
     end
     return self._random
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:random() instead.
-function NumbersSDK:Random(data)
-  local EntityMod = require("entity.random_entity")
   return EntityMod.new(self, data)
 end
 

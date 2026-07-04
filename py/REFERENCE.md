@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetNumberFactEntity
 
 ```python
-get_number_fact = client.get_number_fact
+get_number_fact = client.GetNumberFact()
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ get_number_fact = client.get_number_fact
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_number_fact.load({"id": "get_number_fact_id"})
+result = client.GetNumberFact().load({"id": "get_number_fact_id"})
 ```
 
 ### Common Methods
@@ -142,7 +142,7 @@ Return the entity name.
 ## GetNumberTriviaEntity
 
 ```python
-get_number_trivia = client.get_number_trivia
+get_number_trivia = client.GetNumberTrivia()
 ```
 
 ### Fields
@@ -161,7 +161,7 @@ get_number_trivia = client.get_number_trivia
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.get_number_trivia.load({"id": "get_number_trivia_id"})
+result = client.GetNumberTrivia().load({"id": "get_number_trivia_id"})
 ```
 
 ### Common Methods
@@ -196,7 +196,7 @@ Return the entity name.
 ## RandomEntity
 
 ```python
-random = client.random
+random = client.Random()
 ```
 
 ### Fields
@@ -215,7 +215,7 @@ random = client.random
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.random.load({"id": "random_id"})
+result = client.Random().load({"id": "random_id"})
 ```
 
 ### Common Methods

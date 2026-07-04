@@ -26,9 +26,9 @@ import { NumbersSDK } from '@voxgig-sdk/numbers'
 
 const client = new NumbersSDK()
 
-// Load getnumberfact data
-const getnumberfact = await client.getnumberfact.load({})
-console.log(getnumberfact.data)
+// Load getnumberfact data (returns a GetNumberFact)
+const getnumberfact = await client.GetNumberFact().load()
+console.log(getnumberfact)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -86,8 +86,8 @@ from numbers_sdk import NumbersSDK
 client = NumbersSDK()
 
 
-# Load a specific getnumberfact
-getnumberfact = client.getnumberfact.load({"id": "example_id"})
+# Load a specific getnumberfact (returns the record, raises on error)
+getnumberfact = client.GetNumberFact().load({"id": "example_id"})
 print(getnumberfact)
 ```
 
@@ -100,8 +100,8 @@ require_once 'numbers_sdk.php';
 $client = new NumbersSDK();
 
 
-// Load a specific getnumberfact
-$getnumberfact = $client->getnumberfact()->load(["id" => "example_id"]);
+// Load a specific getnumberfact (returns the bare record; throws on error)
+$getnumberfact = $client->GetNumberFact()->load(["id" => "example_id"]);
 print_r($getnumberfact);
 ```
 
@@ -125,8 +125,8 @@ require_relative "Numbers_sdk"
 client = NumbersSDK.new
 
 
-# Load a specific getnumberfact
-getnumberfact = client.getnumberfact.load({ "id" => "example_id" })
+# Load a specific getnumberfact (returns the bare record; raises on error)
+getnumberfact = client.GetNumberFact.load({ "id" => "example_id" })
 puts getnumberfact
 ```
 
@@ -139,7 +139,7 @@ local client = sdk.new()
 
 
 -- Load a specific getnumberfact
-local getnumberfact, err = client:getnumberfact():load({ id = "example_id" })
+local getnumberfact, err = client:GetNumberFact():load({ id = "example_id" })
 print(getnumberfact)
 ```
 
@@ -152,22 +152,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = NumbersSDK.test()
-const result = await client.getnumberfact.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const getnumberfact = await client.GetNumberFact().load({ id: 'test01' })
+// getnumberfact is a bare GetNumberFact populated with mock data
+console.log(getnumberfact)
 ```
 
 ### Python
 
 ```python
 client = NumbersSDK.test()
-result = client.getnumberfact.load({"id": "test01"})
+getnumberfact = client.GetNumberFact().load({"id": "test01"})
+print(getnumberfact)
 ```
 
 ### PHP
 
 ```php
-$client = NumbersSDK::test();
-$result = $client->getnumberfact()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = NumbersSDK::test([
+    "entity" => ["getnumberfact" => ["test01" => ["id" => "test01"]]],
+]);
+$getnumberfact = $client->GetNumberFact()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -182,15 +187,18 @@ result, err := client.GetNumberFact(nil).Load(
 ### Ruby
 
 ```ruby
-client = NumbersSDK.test
-result = client.getnumberfact.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = NumbersSDK.test({
+  "entity" => { "getnumberfact" => { "test01" => { "id" => "test01" } } },
+})
+getnumberfact = client.GetNumberFact.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:getnumberfact():load({ id = "test01" })
+local result, err = client:GetNumberFact():load({ id = "test01" })
 ```
 
 ## How it works
@@ -238,6 +246,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

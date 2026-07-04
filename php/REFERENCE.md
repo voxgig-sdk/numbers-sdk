@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GetNumberFactEntity
 
 ```php
-$get_number_fact = $client->get_number_fact();
+$get_number_fact = $client->GetNumberFact();
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ $get_number_fact = $client->get_number_fact();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_number_fact()->load(["id" => "get_number_fact_id"]);
+$result = $client->GetNumberFact()->load(["id" => "get_number_fact_id"]);
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## GetNumberTriviaEntity
 
 ```php
-$get_number_trivia = $client->get_number_trivia();
+$get_number_trivia = $client->GetNumberTrivia();
 ```
 
 ### Fields
@@ -167,7 +167,7 @@ $get_number_trivia = $client->get_number_trivia();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_number_trivia()->load(["id" => "get_number_trivia_id"]);
+$result = $client->GetNumberTrivia()->load(["id" => "get_number_trivia_id"]);
 ```
 
 ### Common Methods
@@ -203,7 +203,7 @@ Return the entity name.
 ## RandomEntity
 
 ```php
-$random = $client->random();
+$random = $client->Random();
 ```
 
 ### Fields
@@ -222,7 +222,7 @@ $random = $client->random();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->random()->load(["id" => "random_id"]);
+$result = $client->Random()->load(["id" => "random_id"]);
 ```
 
 ### Common Methods

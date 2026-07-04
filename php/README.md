@@ -33,9 +33,10 @@ $client = new NumbersSDK();
 
 ```php
 try {
-    $result = $client->getnumberfact()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare GetNumberFact record (throws on error).
+    $getnumberfact = $client->GetNumberFact()->load(["id" => "example_id"]);
+    print_r($getnumberfact);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = NumbersSDK::test();
+$client = NumbersSDK::test([
+    "entity" => ["getnumberfact" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->getnumberfact()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$getnumberfact = $client->GetNumberFact()->load(["id" => "test01"]);
+print_r($getnumberfact);
 ```
 
 ### Use a custom fetch function
@@ -254,7 +259,7 @@ API path: `/random/{type}`
 
 ### GetNumberFact
 
-Create an instance: `const get_number_fact = client.get_number_fact`
+Create an instance: `$get_number_fact = $client->GetNumberFact();`
 
 #### Operations
 
@@ -273,14 +278,15 @@ Create an instance: `const get_number_fact = client.get_number_fact`
 
 #### Example: Load
 
-```ts
-const get_number_fact = await client.get_number_fact.load({ id: 'get_number_fact_id' })
+```php
+// load() returns the bare GetNumberFact record (throws on error).
+$get_number_fact = $client->GetNumberFact()->load(["id" => "get_number_fact_id"]);
 ```
 
 
 ### GetNumberTrivia
 
-Create an instance: `const get_number_trivia = client.get_number_trivia`
+Create an instance: `$get_number_trivia = $client->GetNumberTrivia();`
 
 #### Operations
 
@@ -299,14 +305,15 @@ Create an instance: `const get_number_trivia = client.get_number_trivia`
 
 #### Example: Load
 
-```ts
-const get_number_trivia = await client.get_number_trivia.load({ id: 'get_number_trivia_id' })
+```php
+// load() returns the bare GetNumberTrivia record (throws on error).
+$get_number_trivia = $client->GetNumberTrivia()->load(["id" => "get_number_trivia_id"]);
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.random`
+Create an instance: `$random = $client->Random();`
 
 #### Operations
 
@@ -325,8 +332,9 @@ Create an instance: `const random = client.random`
 
 #### Example: Load
 
-```ts
-const random = await client.random.load({ id: 'random_id' })
+```php
+// load() returns the bare Random record (throws on error).
+$random = $client->Random()->load(["id" => "random_id"]);
 ```
 
 
@@ -401,7 +409,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getnumberfact = $client->getnumberfact();
+$getnumberfact = $client->GetNumberFact();
 $getnumberfact->load(["id" => "example_id"]);
 
 // $getnumberfact->dataGet() now returns the loaded getnumberfact data

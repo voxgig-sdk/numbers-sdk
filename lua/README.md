@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a getnumberfact
 
 ```lua
-local result, err = client:getnumberfact():load({ id = "example_id" })
+local getnumberfact, err = client:GetNumberFact():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(getnumberfact)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:getnumberfact():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:GetNumberFact():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -185,17 +185,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local get_number_fact, err = client:GetNumberFact():load({ id = "example_id" })
+    if err then error(err) end
+    -- get_number_fact is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -245,7 +250,7 @@ API path: `/random/{type}`
 
 ### GetNumberFact
 
-Create an instance: `const get_number_fact = client.get_number_fact`
+Create an instance: `local get_number_fact = client:GetNumberFact(nil)`
 
 #### Operations
 
@@ -264,14 +269,14 @@ Create an instance: `const get_number_fact = client.get_number_fact`
 
 #### Example: Load
 
-```ts
-const get_number_fact = await client.get_number_fact.load({ id: 'get_number_fact_id' })
+```lua
+local get_number_fact, err = client:GetNumberFact():load({ id = "get_number_fact_id" })
 ```
 
 
 ### GetNumberTrivia
 
-Create an instance: `const get_number_trivia = client.get_number_trivia`
+Create an instance: `local get_number_trivia = client:GetNumberTrivia(nil)`
 
 #### Operations
 
@@ -290,14 +295,14 @@ Create an instance: `const get_number_trivia = client.get_number_trivia`
 
 #### Example: Load
 
-```ts
-const get_number_trivia = await client.get_number_trivia.load({ id: 'get_number_trivia_id' })
+```lua
+local get_number_trivia, err = client:GetNumberTrivia():load({ id = "get_number_trivia_id" })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.random`
+Create an instance: `local random = client:Random(nil)`
 
 #### Operations
 
@@ -316,8 +321,8 @@ Create an instance: `const random = client.random`
 
 #### Example: Load
 
-```ts
-const random = await client.random.load({ id: 'random_id' })
+```lua
+local random, err = client:Random():load({ id = "random_id" })
 ```
 
 
@@ -392,7 +397,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local getnumberfact = client:getnumberfact()
+local getnumberfact = client:GetNumberFact()
 getnumberfact:load({ id = "example_id" })
 
 -- getnumberfact:data_get() now returns the loaded getnumberfact data

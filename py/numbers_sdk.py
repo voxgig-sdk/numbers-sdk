@@ -220,57 +220,27 @@ class NumbersSDK:
         }
 
 
-    @property
-    def get_number_fact(self):
-        """Idiomatic facade: client.get_number_fact.list() / client.get_number_fact.load({"id": ...})."""
-        from entity.get_number_fact_entity import GetNumberFactEntity
-        cached = getattr(self, "_get_number_fact", None)
-        if cached is None:
-            cached = GetNumberFactEntity(self, None)
-            self._get_number_fact = cached
-        return cached
-
-    def GetNumberFact(self, data=None):
-        # Deprecated: use client.get_number_fact instead.
+    def GetNumberFact(self, data=None) -> "GetNumberFactEntity":
+        """Entity factory: client.GetNumberFact().list({}) / client.GetNumberFact().load({"id": ...})."""
         from entity.get_number_fact_entity import GetNumberFactEntity
         return GetNumberFactEntity(self, data)
 
 
-    @property
-    def get_number_trivia(self):
-        """Idiomatic facade: client.get_number_trivia.list() / client.get_number_trivia.load({"id": ...})."""
-        from entity.get_number_trivia_entity import GetNumberTriviaEntity
-        cached = getattr(self, "_get_number_trivia", None)
-        if cached is None:
-            cached = GetNumberTriviaEntity(self, None)
-            self._get_number_trivia = cached
-        return cached
-
-    def GetNumberTrivia(self, data=None):
-        # Deprecated: use client.get_number_trivia instead.
+    def GetNumberTrivia(self, data=None) -> "GetNumberTriviaEntity":
+        """Entity factory: client.GetNumberTrivia().list({}) / client.GetNumberTrivia().load({"id": ...})."""
         from entity.get_number_trivia_entity import GetNumberTriviaEntity
         return GetNumberTriviaEntity(self, data)
 
 
-    @property
-    def random(self):
-        """Idiomatic facade: client.random.list() / client.random.load({"id": ...})."""
-        from entity.random_entity import RandomEntity
-        cached = getattr(self, "_random", None)
-        if cached is None:
-            cached = RandomEntity(self, None)
-            self._random = cached
-        return cached
-
-    def Random(self, data=None):
-        # Deprecated: use client.random instead.
+    def Random(self, data=None) -> "RandomEntity":
+        """Entity factory: client.Random().list({}) / client.Random().load({"id": ...})."""
         from entity.random_entity import RandomEntity
         return RandomEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "NumbersSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class NumbersSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_number_fact_entity import GetNumberFactEntity
+    from entity.get_number_trivia_entity import GetNumberTriviaEntity
+    from entity.random_entity import RandomEntity
