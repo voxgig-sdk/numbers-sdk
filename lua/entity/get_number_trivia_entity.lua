@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetNumberTriviaLoadMatch
+---@param ctrl? table
+---@return GetNumberTrivia
+---@return string? err
 function GetNumberTriviaEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

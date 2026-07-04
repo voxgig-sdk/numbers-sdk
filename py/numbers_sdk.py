@@ -144,16 +144,23 @@ class NumbersSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class NumbersSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,25 +212,58 @@ class NumbersSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def get_number_fact(self):
+        """Idiomatic facade: client.get_number_fact.list() / client.get_number_fact.load({"id": ...})."""
+        from entity.get_number_fact_entity import GetNumberFactEntity
+        cached = getattr(self, "_get_number_fact", None)
+        if cached is None:
+            cached = GetNumberFactEntity(self, None)
+            self._get_number_fact = cached
+        return cached
 
     def GetNumberFact(self, data=None):
+        # Deprecated: use client.get_number_fact instead.
         from entity.get_number_fact_entity import GetNumberFactEntity
         return GetNumberFactEntity(self, data)
 
 
+    @property
+    def get_number_trivia(self):
+        """Idiomatic facade: client.get_number_trivia.list() / client.get_number_trivia.load({"id": ...})."""
+        from entity.get_number_trivia_entity import GetNumberTriviaEntity
+        cached = getattr(self, "_get_number_trivia", None)
+        if cached is None:
+            cached = GetNumberTriviaEntity(self, None)
+            self._get_number_trivia = cached
+        return cached
+
     def GetNumberTrivia(self, data=None):
+        # Deprecated: use client.get_number_trivia instead.
         from entity.get_number_trivia_entity import GetNumberTriviaEntity
         return GetNumberTriviaEntity(self, data)
 
 
+    @property
+    def random(self):
+        """Idiomatic facade: client.random.list() / client.random.load({"id": ...})."""
+        from entity.random_entity import RandomEntity
+        cached = getattr(self, "_random", None)
+        if cached is None:
+            cached = RandomEntity(self, None)
+            self._random = cached
+        return cached
+
     def Random(self, data=None):
+        # Deprecated: use client.random instead.
         from entity.random_entity import RandomEntity
         return RandomEntity(self, data)
 

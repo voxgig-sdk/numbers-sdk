@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Numbers_types'
+
 
 class NumbersSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class NumbersSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class NumbersSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue NumbersError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = NumbersHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class NumbersSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,28 +198,49 @@ class NumbersSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.get_number_fact.list / client.get_number_fact.load({ "id" => ... })
+  def get_number_fact
+    require_relative 'entity/get_number_fact_entity'
+    @get_number_fact ||= GetNumberFactEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_number_fact instead.
   def GetNumberFact(data = nil)
     require_relative 'entity/get_number_fact_entity'
     GetNumberFactEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_number_trivia.list / client.get_number_trivia.load({ "id" => ... })
+  def get_number_trivia
+    require_relative 'entity/get_number_trivia_entity'
+    @get_number_trivia ||= GetNumberTriviaEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_number_trivia instead.
   def GetNumberTrivia(data = nil)
     require_relative 'entity/get_number_trivia_entity'
     GetNumberTriviaEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.random.list / client.random.load({ "id" => ... })
+  def random
+    require_relative 'entity/random_entity'
+    @random ||= RandomEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.random instead.
   def Random(data = nil)
     require_relative 'entity/random_entity'
     RandomEntity.new(self, data)

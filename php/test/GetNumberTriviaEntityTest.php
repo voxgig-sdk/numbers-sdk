@@ -49,8 +49,7 @@ class GetNumberTriviaEntityTest extends TestCase
         // LOAD
         $get_number_trivia_ref01_ent = $client->GetNumberTrivia(null);
         $get_number_trivia_ref01_match_dt0 = [];
-        [$get_number_trivia_ref01_data_dt0_loaded, $err] = $get_number_trivia_ref01_ent->load($get_number_trivia_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $get_number_trivia_ref01_data_dt0_loaded = $get_number_trivia_ref01_ent->load($get_number_trivia_ref01_match_dt0, null);
         $this->assertNotNull($get_number_trivia_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function get_number_trivia_basic_setup($extra)
         "NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID" => $idmap,
         "NUMBERS_TEST_LIVE" => "FALSE",
         "NUMBERS_TEST_EXPLAIN" => "FALSE",
-        "NUMBERS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function get_number_trivia_basic_setup($extra)
     if ($env["NUMBERS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["NUMBERS_APIKEY"],
             ],
             $extra ?? [],
         ]);

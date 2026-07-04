@@ -4,6 +4,8 @@ import { GetNumberFactEntity } from './entity/GetNumberFactEntity'
 import { GetNumberTriviaEntity } from './entity/GetNumberTriviaEntity'
 import { RandomEntity } from './entity/RandomEntity'
 
+export type * from './NumbersTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class NumbersSDK {
 
 
 
+  _get_number_fact?: GetNumberFactEntity
+
+  // Idiomatic facade: `client.get_number_fact.list()` / `client.get_number_fact.load({ id })`.
+  get get_number_fact(): GetNumberFactEntity {
+    return (this._get_number_fact ??= new GetNumberFactEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_number_fact` instead. */
   GetNumberFact(data?: any) {
     const self = this
     return new GetNumberFactEntity(self,data)
   }
 
 
+  _get_number_trivia?: GetNumberTriviaEntity
+
+  // Idiomatic facade: `client.get_number_trivia.list()` / `client.get_number_trivia.load({ id })`.
+  get get_number_trivia(): GetNumberTriviaEntity {
+    return (this._get_number_trivia ??= new GetNumberTriviaEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_number_trivia` instead. */
   GetNumberTrivia(data?: any) {
     const self = this
     return new GetNumberTriviaEntity(self,data)
   }
 
 
+  _random?: RandomEntity
+
+  // Idiomatic facade: `client.random.list()` / `client.random.load({ id })`.
+  get random(): RandomEntity {
+    return (this._random ??= new RandomEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.random` instead. */
   Random(data?: any) {
     const self = this
     return new RandomEntity(self,data)

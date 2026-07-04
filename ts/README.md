@@ -9,9 +9,12 @@ The TypeScript SDK for the Numbers API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/numbers
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/numbers-sdk/releases](https://github.com/voxgig-sdk/numbers-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NumbersSDK } from 'numbers'
+import { NumbersSDK } from '@voxgig-sdk/numbers'
 
-const client = new NumbersSDK({
-  apikey: process.env.NUMBERS_APIKEY,
-})
+const client = new NumbersSDK()
 ```
 
 ### 3. Load a getnumberfact
 
 ```ts
-const result = await client.GetNumberFact().load({ id: 'example_id' })
+const result = await client.getnumberfact.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NumbersSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.getnumberfact.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new NumbersSDK({ apikey: '...' })
+const client = new NumbersSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.getnumberfact
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new NumbersSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -134,7 +134,6 @@ Create a `.env.local` file at the project root:
 
 ```
 NUMBERS_TEST_LIVE=TRUE
-NUMBERS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new NumbersSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new NumbersSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -297,7 +294,7 @@ API path: `/random/{type}`
 
 ### GetNumberFact
 
-Create an instance: `const get_number_fact = client.GetNumberFact()`
+Create an instance: `const get_number_fact = client.get_number_fact`
 
 #### Operations
 
@@ -317,13 +314,13 @@ Create an instance: `const get_number_fact = client.GetNumberFact()`
 #### Example: Load
 
 ```ts
-const get_number_fact = await client.GetNumberFact().load({ id: 'get_number_fact_id' })
+const get_number_fact = await client.get_number_fact.load({ id: 'get_number_fact_id' })
 ```
 
 
 ### GetNumberTrivia
 
-Create an instance: `const get_number_trivia = client.GetNumberTrivia()`
+Create an instance: `const get_number_trivia = client.get_number_trivia`
 
 #### Operations
 
@@ -343,13 +340,13 @@ Create an instance: `const get_number_trivia = client.GetNumberTrivia()`
 #### Example: Load
 
 ```ts
-const get_number_trivia = await client.GetNumberTrivia().load({ id: 'get_number_trivia_id' })
+const get_number_trivia = await client.get_number_trivia.load({ id: 'get_number_trivia_id' })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.Random()`
+Create an instance: `const random = client.random`
 
 #### Operations
 
@@ -369,7 +366,7 @@ Create an instance: `const random = client.Random()`
 #### Example: Load
 
 ```ts
-const random = await client.Random().load({ id: 'random_id' })
+const random = await client.random.load({ id: 'random_id' })
 ```
 
 
@@ -430,7 +427,7 @@ numbers/
 Import the SDK from the package root:
 
 ```ts
-import { NumbersSDK } from 'numbers'
+import { NumbersSDK } from '@voxgig-sdk/numbers'
 ```
 
 ### Entity state
@@ -440,11 +437,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const getnumberfact = client.getnumberfact
+await getnumberfact.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// getnumberfact.data() now returns the loaded getnumberfact data
+// getnumberfact.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

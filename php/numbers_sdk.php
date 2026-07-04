@@ -103,7 +103,7 @@ class NumbersSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class NumbersSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class NumbersSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,38 +216,71 @@ class NumbersSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function GetNumberFact($data = null)
+    private $_get_number_fact = null;
+
+    // Idiomatic facade: $client->get_number_fact()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GetNumberFact() (PHP method
+    // names are case-insensitive).
+    public function get_number_fact($data = null)
     {
         require_once __DIR__ . '/entity/get_number_fact_entity.php';
+        if ($data === null) {
+            if ($this->_get_number_fact === null) {
+                $this->_get_number_fact = new GetNumberFactEntity($this, null);
+            }
+            return $this->_get_number_fact;
+        }
         return new GetNumberFactEntity($this, $data);
     }
 
 
-    public function GetNumberTrivia($data = null)
+    private $_get_number_trivia = null;
+
+    // Idiomatic facade: $client->get_number_trivia()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GetNumberTrivia() (PHP method
+    // names are case-insensitive).
+    public function get_number_trivia($data = null)
     {
         require_once __DIR__ . '/entity/get_number_trivia_entity.php';
+        if ($data === null) {
+            if ($this->_get_number_trivia === null) {
+                $this->_get_number_trivia = new GetNumberTriviaEntity($this, null);
+            }
+            return $this->_get_number_trivia;
+        }
         return new GetNumberTriviaEntity($this, $data);
     }
 
 
-    public function Random($data = null)
+    private $_random = null;
+
+    // Idiomatic facade: $client->random()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Random() (PHP method
+    // names are case-insensitive).
+    public function random($data = null)
     {
         require_once __DIR__ . '/entity/random_entity.php';
+        if ($data === null) {
+            if ($this->_random === null) {
+                $this->_random = new RandomEntity($this, null);
+            }
+            return $this->_random;
+        }
         return new RandomEntity($this, $data);
     }
 

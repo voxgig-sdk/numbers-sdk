@@ -9,12 +9,9 @@ The Lua SDK for the Numbers API — an entity-oriented client using Lua conventi
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-numbers
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/numbers-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("numbers_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("NUMBERS_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 3. Load a getnumberfact
 
 ```lua
-local result, err = client:GetNumberFact():load({ id = "example_id" })
+local result, err = client:getnumberfact():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Numbers():load({ id = "test01" })
+local result, err = client:getnumberfact():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -121,7 +116,6 @@ Create a `.env.local` file at the project root:
 
 ```
 NUMBERS_TEST_LIVE=TRUE
-NUMBERS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -252,7 +245,7 @@ API path: `/random/{type}`
 
 ### GetNumberFact
 
-Create an instance: `const get_number_fact = client.GetNumberFact()`
+Create an instance: `const get_number_fact = client.get_number_fact`
 
 #### Operations
 
@@ -272,13 +265,13 @@ Create an instance: `const get_number_fact = client.GetNumberFact()`
 #### Example: Load
 
 ```ts
-const get_number_fact = await client.GetNumberFact().load({ id: 'get_number_fact_id' })
+const get_number_fact = await client.get_number_fact.load({ id: 'get_number_fact_id' })
 ```
 
 
 ### GetNumberTrivia
 
-Create an instance: `const get_number_trivia = client.GetNumberTrivia()`
+Create an instance: `const get_number_trivia = client.get_number_trivia`
 
 #### Operations
 
@@ -298,13 +291,13 @@ Create an instance: `const get_number_trivia = client.GetNumberTrivia()`
 #### Example: Load
 
 ```ts
-const get_number_trivia = await client.GetNumberTrivia().load({ id: 'get_number_trivia_id' })
+const get_number_trivia = await client.get_number_trivia.load({ id: 'get_number_trivia_id' })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.Random()`
+Create an instance: `const random = client.random`
 
 #### Operations
 
@@ -324,7 +317,7 @@ Create an instance: `const random = client.Random()`
 #### Example: Load
 
 ```ts
-const random = await client.Random().load({ id: 'random_id' })
+const random = await client.random.load({ id: 'random_id' })
 ```
 
 
@@ -399,11 +392,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local getnumberfact = client:getnumberfact()
+getnumberfact:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- getnumberfact:data_get() now returns the loaded getnumberfact data
+-- getnumberfact:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

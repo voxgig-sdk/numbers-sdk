@@ -245,16 +245,25 @@ func (sdk *NumbersSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// GetNumberFact returns a GetNumberFact entity bound to this client.
+// Idiomatic usage: client.GetNumberFact(nil).List(nil, nil) or
+// client.GetNumberFact(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NumbersSDK) GetNumberFact(data map[string]any) NumbersEntity {
 	return NewGetNumberFactEntityFunc(sdk, data)
 }
 
 
+// GetNumberTrivia returns a GetNumberTrivia entity bound to this client.
+// Idiomatic usage: client.GetNumberTrivia(nil).List(nil, nil) or
+// client.GetNumberTrivia(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NumbersSDK) GetNumberTrivia(data map[string]any) NumbersEntity {
 	return NewGetNumberTriviaEntityFunc(sdk, data)
 }
 
 
+// Random returns a Random entity bound to this client.
+// Idiomatic usage: client.Random(nil).List(nil, nil) or
+// client.Random(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NumbersSDK) Random(data map[string]any) NumbersEntity {
 	return NewRandomEntityFunc(sdk, data)
 }

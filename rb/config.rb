@@ -15,9 +15,6 @@ module NumbersConfig
       },
       "options" => {
         "base" => "http://numbersapi.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -77,6 +74,7 @@ module NumbersConfig
                         "orig" => "number",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -85,6 +83,7 @@ module NumbersConfig
                         "orig" => "type",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                     "query" => [
@@ -195,6 +194,7 @@ module NumbersConfig
                         "orig" => "number",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -307,6 +307,7 @@ module NumbersConfig
                         "orig" => "type",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [

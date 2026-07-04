@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetNumberTrivia,
+  GetNumberTriviaLoadMatch,
+} from '../NumbersTypes'
 
 // TODO: needs Entity superclass
-class GetNumberTriviaEntity extends NumbersEntityBase {
+class GetNumberTriviaEntity extends NumbersEntityBase<GetNumberTrivia> {
 
   constructor(client: NumbersSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetNumberTriviaEntity extends NumbersEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetNumberTriviaLoadMatch, ctrl?: Control): Promise<GetNumberTrivia> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetNumberTriviaEntity extends NumbersEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetNumberTrivia> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

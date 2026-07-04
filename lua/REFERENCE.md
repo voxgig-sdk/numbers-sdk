@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## GetNumberFactEntity
 
 ```lua
-local get_number_fact = client:GetNumberFact(nil)
+local get_number_fact = client:get_number_fact(nil)
 ```
 
 ### Fields
@@ -111,7 +110,7 @@ local get_number_fact = client:GetNumberFact(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetNumberFact():load({ id = "get_number_fact_id" })
+local result, err = client:get_number_fact():load({ id = "get_number_fact_id" })
 ```
 
 ### Common Methods
@@ -147,7 +146,7 @@ Return the entity name.
 ## GetNumberTriviaEntity
 
 ```lua
-local get_number_trivia = client:GetNumberTrivia(nil)
+local get_number_trivia = client:get_number_trivia(nil)
 ```
 
 ### Fields
@@ -166,7 +165,7 @@ local get_number_trivia = client:GetNumberTrivia(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetNumberTrivia():load({ id = "get_number_trivia_id" })
+local result, err = client:get_number_trivia():load({ id = "get_number_trivia_id" })
 ```
 
 ### Common Methods
@@ -202,7 +201,7 @@ Return the entity name.
 ## RandomEntity
 
 ```lua
-local random = client:Random(nil)
+local random = client:random(nil)
 ```
 
 ### Fields
@@ -221,7 +220,7 @@ local random = client:Random(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Random():load({ id = "random_id" })
+local result, err = client:random():load({ id = "random_id" })
 ```
 
 ### Common Methods

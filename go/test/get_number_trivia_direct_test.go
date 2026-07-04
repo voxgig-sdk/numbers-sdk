@@ -110,14 +110,12 @@ func get_number_triviaDirectSetup(mockres any) *get_number_triviaDirectSetupResu
 	env := envOverride(map[string]any{
 		"NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID": map[string]any{},
 		"NUMBERS_TEST_LIVE":    "FALSE",
-		"NUMBERS_APIKEY":       "NONE",
 	})
 
 	live := env["NUMBERS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["NUMBERS_APIKEY"],
 		}
 		client := sdk.NewNumbersSDK(mergedOpts)
 

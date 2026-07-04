@@ -85,6 +85,27 @@ func (e *GetNumberFactEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an GetNumberFact; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *GetNumberFactEntity) DataTyped(data ...GetNumberFact) GetNumberFact {
+	if len(data) > 0 {
+		return typedFrom[GetNumberFact](e.Data(asMap(data[0])))
+	}
+	return typedFrom[GetNumberFact](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through GetNumberFact (all fields
+// optional at the wire level).
+func (e *GetNumberFactEntity) MatchTyped(match ...GetNumberFact) GetNumberFact {
+	if len(match) > 0 {
+		return typedFrom[GetNumberFact](e.Match(asMap(match[0])))
+	}
+	return typedFrom[GetNumberFact](e.Match())
+}
+
 
 func (e *GetNumberFactEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *GetNumberFactEntity) Load(reqmatch map[string]any, ctrl map[string]any)
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// GetNumberFactLoadMatch and returns an GetNumberFact. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *GetNumberFactEntity) LoadTyped(reqmatch GetNumberFactLoadMatch, ctrl map[string]any) (GetNumberFact, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return GetNumberFact{}, err
+	}
+	return typedFrom[GetNumberFact](res), nil
 }
 
 

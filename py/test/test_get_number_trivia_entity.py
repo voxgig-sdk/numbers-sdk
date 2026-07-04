@@ -49,8 +49,7 @@ class TestGetNumberTriviaEntity:
         # LOAD
         get_number_trivia_ref01_ent = client.GetNumberTrivia(None)
         get_number_trivia_ref01_match_dt0 = {}
-        get_number_trivia_ref01_data_dt0_loaded, err = get_number_trivia_ref01_ent.load(get_number_trivia_ref01_match_dt0, None)
-        assert err is None
+        get_number_trivia_ref01_data_dt0_loaded = get_number_trivia_ref01_ent.load(get_number_trivia_ref01_match_dt0, None)
         assert get_number_trivia_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _get_number_trivia_basic_setup(extra):
         "NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID": idmap,
         "NUMBERS_TEST_LIVE": "FALSE",
         "NUMBERS_TEST_EXPLAIN": "FALSE",
-        "NUMBERS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _get_number_trivia_basic_setup(extra):
     if env.get("NUMBERS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("NUMBERS_APIKEY"),
             },
             extra or {},
         ])

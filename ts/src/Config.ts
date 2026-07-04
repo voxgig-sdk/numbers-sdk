@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'http://numbersapi.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -110,7 +106,8 @@ class Config {
                     "name": "number",
                     "orig": "number",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -118,7 +115,8 @@ class Config {
                     "name": "type",
                     "orig": "type",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ],
                 "query": [
@@ -228,7 +226,8 @@ class Config {
                     "name": "id",
                     "orig": "number",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -340,7 +339,8 @@ class Config {
                     "name": "id",
                     "orig": "type",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

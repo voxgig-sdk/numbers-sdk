@@ -117,14 +117,12 @@ func randomDirectSetup(mockres any) *randomDirectSetupResult {
 	env := envOverride(map[string]any{
 		"NUMBERS_TEST_RANDOM_ENTID": map[string]any{},
 		"NUMBERS_TEST_LIVE":    "FALSE",
-		"NUMBERS_APIKEY":       "NONE",
 	})
 
 	live := env["NUMBERS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["NUMBERS_APIKEY"],
 		}
 		client := sdk.NewNumbersSDK(mergedOpts)
 

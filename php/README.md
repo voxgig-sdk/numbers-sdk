@@ -9,9 +9,10 @@ The PHP SDK for the Numbers API — an entity-oriented client using PHP conventi
 
 
 ## Install
-```bash
-composer require voxgig-sdk/numbers
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/numbers-sdk/releases](https://github.com/voxgig-sdk/numbers-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'numbers_sdk.php';
 
-$client = new NumbersSDK([
-    "apikey" => getenv("NUMBERS_APIKEY"),
-]);
+$client = new NumbersSDK();
 ```
 
 ### 3. Load a getnumberfact
 
 ```php
-[$result, $err] = $client->GetNumberFact()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->getnumberfact()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = NumbersSDK::test();
 
-[$result, $err] = $client->Numbers()->load(["id" => "test01"]);
+$result = $client->getnumberfact()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -116,7 +121,6 @@ Create a `.env.local` file at the project root:
 
 ```
 NUMBERS_TEST_LIVE=TRUE
-NUMBERS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -187,8 +190,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -247,7 +254,7 @@ API path: `/random/{type}`
 
 ### GetNumberFact
 
-Create an instance: `const get_number_fact = client.GetNumberFact()`
+Create an instance: `const get_number_fact = client.get_number_fact`
 
 #### Operations
 
@@ -267,13 +274,13 @@ Create an instance: `const get_number_fact = client.GetNumberFact()`
 #### Example: Load
 
 ```ts
-const get_number_fact = await client.GetNumberFact().load({ id: 'get_number_fact_id' })
+const get_number_fact = await client.get_number_fact.load({ id: 'get_number_fact_id' })
 ```
 
 
 ### GetNumberTrivia
 
-Create an instance: `const get_number_trivia = client.GetNumberTrivia()`
+Create an instance: `const get_number_trivia = client.get_number_trivia`
 
 #### Operations
 
@@ -293,13 +300,13 @@ Create an instance: `const get_number_trivia = client.GetNumberTrivia()`
 #### Example: Load
 
 ```ts
-const get_number_trivia = await client.GetNumberTrivia().load({ id: 'get_number_trivia_id' })
+const get_number_trivia = await client.get_number_trivia.load({ id: 'get_number_trivia_id' })
 ```
 
 
 ### Random
 
-Create an instance: `const random = client.Random()`
+Create an instance: `const random = client.random`
 
 #### Operations
 
@@ -319,7 +326,7 @@ Create an instance: `const random = client.Random()`
 #### Example: Load
 
 ```ts
-const random = await client.Random().load({ id: 'random_id' })
+const random = await client.random.load({ id: 'random_id' })
 ```
 
 
@@ -394,11 +401,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$getnumberfact = $client->getnumberfact();
+$getnumberfact->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $getnumberfact->dataGet() now returns the loaded getnumberfact data
+// $getnumberfact->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

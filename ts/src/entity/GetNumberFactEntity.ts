@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetNumberFact,
+  GetNumberFactLoadMatch,
+} from '../NumbersTypes'
 
 // TODO: needs Entity superclass
-class GetNumberFactEntity extends NumbersEntityBase {
+class GetNumberFactEntity extends NumbersEntityBase<GetNumberFact> {
 
   constructor(client: NumbersSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetNumberFactEntity extends NumbersEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetNumberFactLoadMatch, ctrl?: Control): Promise<GetNumberFact> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetNumberFactEntity extends NumbersEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetNumberFact> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

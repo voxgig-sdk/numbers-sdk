@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetNumberFactLoadMatch
+---@param ctrl? table
+---@return GetNumberFact
+---@return string? err
 function GetNumberFactEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
