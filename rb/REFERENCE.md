@@ -8,7 +8,7 @@ Complete API reference for the Numbers Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'numbers_sdk'
+require_relative 'Numbers_sdk'
 
 client = NumbersSDK.new(options)
 ```
@@ -101,10 +101,10 @@ get_number_fact = client.GetNumberFact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `Boolean` | No |  |
+| `number` | `Float` | No |  |
+| `text` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
@@ -113,7 +113,7 @@ get_number_fact = client.GetNumberFact
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetNumberFact.load({ "id" => "get_number_fact_id" })
+result = client.GetNumberFact.load()
 ```
 
 ### Common Methods
@@ -156,10 +156,10 @@ get_number_trivia = client.GetNumberTrivia
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `Boolean` | No |  |
+| `number` | `Float` | No |  |
+| `text` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
@@ -211,10 +211,10 @@ random = client.Random
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `Boolean` | No |  |
+| `number` | `Float` | No |  |
+| `text` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 

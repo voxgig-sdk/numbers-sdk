@@ -98,10 +98,10 @@ local get_number_fact = client:GetNumberFact(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `boolean` | No |  |
+| `number` | `number` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -110,7 +110,7 @@ local get_number_fact = client:GetNumberFact(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetNumberFact():load({ id = "get_number_fact_id" })
+local result, err = client:GetNumberFact():load()
 ```
 
 ### Common Methods
@@ -153,10 +153,10 @@ local get_number_trivia = client:GetNumberTrivia(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `boolean` | No |  |
+| `number` | `number` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -208,10 +208,10 @@ local random = client:Random(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `boolean` | No |  |
+| `number` | `number` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

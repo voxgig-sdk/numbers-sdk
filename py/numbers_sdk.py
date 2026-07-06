@@ -221,19 +221,19 @@ class NumbersSDK:
 
 
     def GetNumberFact(self, data=None) -> "GetNumberFactEntity":
-        """Entity factory: client.GetNumberFact().list({}) / client.GetNumberFact().load({"id": ...})."""
+        """Entity factory: client.GetNumberFact().list() / client.GetNumberFact().load({"id": ...})."""
         from entity.get_number_fact_entity import GetNumberFactEntity
         return GetNumberFactEntity(self, data)
 
 
     def GetNumberTrivia(self, data=None) -> "GetNumberTriviaEntity":
-        """Entity factory: client.GetNumberTrivia().list({}) / client.GetNumberTrivia().load({"id": ...})."""
+        """Entity factory: client.GetNumberTrivia().list() / client.GetNumberTrivia().load({"id": ...})."""
         from entity.get_number_trivia_entity import GetNumberTriviaEntity
         return GetNumberTriviaEntity(self, data)
 
 
     def Random(self, data=None) -> "RandomEntity":
-        """Entity factory: client.Random().list({}) / client.Random().load({"id": ...})."""
+        """Entity factory: client.Random().list() / client.Random().load({"id": ...})."""
         from entity.random_entity import RandomEntity
         return RandomEntity(self, data)
 

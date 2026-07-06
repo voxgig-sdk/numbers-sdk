@@ -140,10 +140,10 @@ const get_number_fact = client.GetNumberFact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `boolean` | No |  |
+| `number` | `number` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -152,7 +152,7 @@ const get_number_fact = client.GetNumberFact()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetNumberFact().load({ id: 'get_number_fact_id' })
+const result = await client.GetNumberFact().load()
 ```
 
 ### Common Methods
@@ -193,10 +193,10 @@ const get_number_trivia = client.GetNumberTrivia()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `boolean` | No |  |
+| `number` | `number` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -246,10 +246,10 @@ const random = client.Random()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `boolean` | No |  |
+| `number` | `number` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

@@ -105,10 +105,10 @@ get_number_fact := client.GetNumberFact(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `bool` | No |  |
+| `number` | `float64` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -117,7 +117,7 @@ get_number_fact := client.GetNumberFact(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetNumberFact(nil).Load(map[string]any{"id": "get_number_fact_id"}, nil)
+result, err := client.GetNumberFact(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -154,10 +154,10 @@ get_number_trivia := client.GetNumberTrivia(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `bool` | No |  |
+| `number` | `float64` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -203,10 +203,10 @@ random := client.Random(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `bool` | No |  |
+| `number` | `float64` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 

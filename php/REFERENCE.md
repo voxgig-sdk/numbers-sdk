@@ -53,11 +53,11 @@ Create a new `GetNumberTriviaEntity` instance. Pass `null` for no initial data.
 
 Create a new `RandomEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): NumbersUtility`
 
 Return a copy of the SDK utility object.
 
@@ -100,10 +100,10 @@ $get_number_fact = $client->GetNumberFact();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `bool` | No |  |
+| `number` | `float` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -112,24 +112,24 @@ $get_number_fact = $client->GetNumberFact();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetNumberFact()->load(["id" => "get_number_fact_id"]);
+$result = $client->GetNumberFact()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -138,7 +138,7 @@ Set the entity match criteria.
 Create a new `GetNumberFactEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -155,10 +155,10 @@ $get_number_trivia = $client->GetNumberTrivia();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `bool` | No |  |
+| `number` | `float` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -172,19 +172,19 @@ $result = $client->GetNumberTrivia()->load(["id" => "get_number_trivia_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -193,7 +193,7 @@ Set the entity match criteria.
 Create a new `GetNumberTriviaEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -210,10 +210,10 @@ $random = $client->Random();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | ``$BOOLEAN`` | No |  |
-| `number` | ``$NUMBER`` | No |  |
-| `text` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `found` | `bool` | No |  |
+| `number` | `float` | No |  |
+| `text` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -227,19 +227,19 @@ $result = $client->Random()->load(["id" => "random_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -248,7 +248,7 @@ Set the entity match criteria.
 Create a new `RandomEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
