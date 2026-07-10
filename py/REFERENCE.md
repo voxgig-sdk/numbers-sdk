@@ -107,7 +107,7 @@ get_number_fact = client.GetNumberFact()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetNumberFact().load()
+result = client.GetNumberFact().load({"number": "number", "type": "type"})
 ```
 
 ### Common Methods

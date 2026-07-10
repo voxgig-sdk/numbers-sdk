@@ -39,7 +39,7 @@ const client = new NumbersSDK()
 
 ```ts
 try {
-  const getnumberfact = await client.GetNumberFact().load()
+  const getnumberfact = await client.GetNumberFact().load({ number: 'example_number', type: 'example_type' })
   console.log(getnumberfact)
 } catch (err) {
   console.error('load failed:', err)
@@ -348,7 +348,7 @@ Create an instance: `const get_number_fact = client.GetNumberFact()`
 #### Example: Load
 
 ```ts
-const get_number_fact = await client.GetNumberFact().load()
+const get_number_fact = await client.GetNumberFact().load({ number: 'number', type: 'type' })
 ```
 
 

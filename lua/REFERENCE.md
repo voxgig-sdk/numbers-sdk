@@ -110,7 +110,7 @@ local get_number_fact = client:GetNumberFact(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetNumberFact():load()
+local result, err = client:GetNumberFact():load({ number = "number", type = "type" })
 ```
 
 ### Common Methods

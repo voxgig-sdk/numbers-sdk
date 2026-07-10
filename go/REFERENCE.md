@@ -98,7 +98,8 @@ same parameters as `Direct()`.
 ## GetNumberFactEntity
 
 ```go
-get_number_fact := client.GetNumberFact(nil)
+getNumberFact := client.GetNumberFact(nil)
+fmt.Println(getNumberFact.GetName()) // "get_number_fact"
 ```
 
 ### Fields
@@ -117,7 +118,11 @@ get_number_fact := client.GetNumberFact(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetNumberFact(nil).Load(nil, nil)
+result, err := client.GetNumberFact(nil).Load(map[string]any{"number": "number", "type": "type"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -147,7 +152,8 @@ Return the entity name.
 ## GetNumberTriviaEntity
 
 ```go
-get_number_trivia := client.GetNumberTrivia(nil)
+getNumberTrivia := client.GetNumberTrivia(nil)
+fmt.Println(getNumberTrivia.GetName()) // "get_number_trivia"
 ```
 
 ### Fields
@@ -167,6 +173,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetNumberTrivia(nil).Load(map[string]any{"id": "get_number_trivia_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -197,6 +207,7 @@ Return the entity name.
 
 ```go
 random := client.Random(nil)
+fmt.Println(random.GetName()) // "random"
 ```
 
 ### Fields
@@ -216,6 +227,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Random(nil).Load(map[string]any{"id": "random_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

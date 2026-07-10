@@ -113,7 +113,7 @@ get_number_fact = client.GetNumberFact
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetNumberFact.load()
+result = client.GetNumberFact.load({ "number" => "number", "type" => "type" })
 ```
 
 ### Common Methods

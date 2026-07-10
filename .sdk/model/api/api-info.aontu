@@ -15,9 +15,9 @@ main: {
           url: "http://numbersapi.com"
         }
       ]
+      summary: "The Numbers API provides interesting facts about numbers covering trivia, math, dates, and years."
       title: "Numbers API"
       version: "1.0.0"
+      website: "http://numbersapi.com/#random/math"
     }
   }
-}
-

@@ -36,7 +36,7 @@ $client = new NumbersSDK();
 ```php
 try {
     // load() returns the bare GetNumberFact record (throws on error).
-    $getnumberfact = $client->GetNumberFact()->load();
+    $getnumberfact = $client->GetNumberFact()->load(["number" => "example_number", "type" => "example_type"]);
     print_r($getnumberfact);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -309,7 +309,7 @@ Create an instance: `$get_number_fact = $client->GetNumberFact();`
 
 ```php
 // load() returns the bare GetNumberFact record (throws on error).
-$get_number_fact = $client->GetNumberFact()->load();
+$get_number_fact = $client->GetNumberFact()->load(["number" => "number", "type" => "type"]);
 ```
 
 

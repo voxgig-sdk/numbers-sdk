@@ -42,7 +42,7 @@ client = NumbersSDK()
 
 ```python
 try:
-    getnumberfact = client.GetNumberFact().load()
+    getnumberfact = client.GetNumberFact().load({"number": "example_number", "type": "example_type"})
     print(getnumberfact)
 except Exception as err:
     print(f"load failed: {err}")
@@ -304,7 +304,7 @@ Create an instance: `get_number_fact = client.GetNumberFact()`
 #### Example: Load
 
 ```python
-get_number_fact = client.GetNumberFact().load()
+get_number_fact = client.GetNumberFact().load({"number": "number", "type": "type"})
 ```
 
 

@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single getnumberfact — the value is the loaded record.
-    getnumberfact, err := client.GetNumberFact(nil).Load(nil, nil)
+    // Load a single getNumberFact — the value is the loaded record.
+    getNumberFact, err := client.GetNumberFact(nil).Load(map[string]any{"number": "example_number", "type": "example_type"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(getnumberfact)
+    fmt.Println(getNumberFact)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getnumberfact, err := client.GetNumberFact(nil).Load(
+getNumberFact, err := client.GetNumberFact(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getnumberfact) // the returned mock data
+fmt.Println(getNumberFact) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -247,9 +247,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getnumberfact, err := client.GetNumberFact(nil).Load(nil, nil)
+    getNumberFact, err := client.GetNumberFact(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // getnumberfact is the returned record
+    // getNumberFact is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -302,7 +302,7 @@ API path: `/random/{type}`
 
 ### GetNumberFact
 
-Create an instance: `get_number_fact := client.GetNumberFact(nil)`
+Create an instance: `getNumberFact := client.GetNumberFact(nil)`
 
 #### Operations
 
@@ -322,17 +322,17 @@ Create an instance: `get_number_fact := client.GetNumberFact(nil)`
 #### Example: Load
 
 ```go
-get_number_fact, err := client.GetNumberFact(nil).Load(nil, nil)
+getNumberFact, err := client.GetNumberFact(nil).Load(map[string]any{"number": "number", "type": "type"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_number_fact) // the loaded record
+fmt.Println(getNumberFact) // the loaded record
 ```
 
 
 ### GetNumberTrivia
 
-Create an instance: `get_number_trivia := client.GetNumberTrivia(nil)`
+Create an instance: `getNumberTrivia := client.GetNumberTrivia(nil)`
 
 #### Operations
 
@@ -352,11 +352,11 @@ Create an instance: `get_number_trivia := client.GetNumberTrivia(nil)`
 #### Example: Load
 
 ```go
-get_number_trivia, err := client.GetNumberTrivia(nil).Load(map[string]any{"id": "get_number_trivia_id"}, nil)
+getNumberTrivia, err := client.GetNumberTrivia(nil).Load(map[string]any{"id": "get_number_trivia_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_number_trivia) // the loaded record
+fmt.Println(getNumberTrivia) // the loaded record
 ```
 
 

@@ -35,7 +35,7 @@ client = NumbersSDK.new
 ```ruby
 begin
   # load returns the bare GetNumberFact record (raises on error).
-  getnumberfact = client.GetNumberFact.load()
+  getnumberfact = client.GetNumberFact.load({ "number" => "example_number", "type" => "example_type" })
   puts getnumberfact
 rescue => err
   warn "load failed: #{err}"
@@ -299,7 +299,7 @@ Create an instance: `get_number_fact = client.GetNumberFact`
 
 ```ruby
 # load returns the bare GetNumberFact record (raises on error).
-get_number_fact = client.GetNumberFact.load()
+get_number_fact = client.GetNumberFact.load({ "number" => "number", "type" => "type" })
 ```
 
 

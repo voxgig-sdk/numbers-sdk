@@ -36,7 +36,7 @@ local client = sdk.new()
 ### 3. Load a getnumberfact
 
 ```lua
-local getnumberfact, err = client:GetNumberFact():load()
+local getnumberfact, err = client:GetNumberFact():load({ number = "example_number", type = "example_type" })
 if err then error(err) end
 print(getnumberfact)
 ```
@@ -289,7 +289,7 @@ Create an instance: `local get_number_fact = client:GetNumberFact(nil)`
 #### Example: Load
 
 ```lua
-local get_number_fact, err = client:GetNumberFact():load()
+local get_number_fact, err = client:GetNumberFact():load({ number = "number", type = "type" })
 ```
 
 
