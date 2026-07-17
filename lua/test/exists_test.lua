@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Numbers SDK exists test
 
 local sdk = require("numbers_sdk")
 
