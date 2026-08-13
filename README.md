@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new NumbersSDK()
-const getnumberfact = await client.GetNumberFact().load()
+const getnumberfact = await client.GetNumberFact().load({ number: "example", type: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = NumbersSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = NumbersSDK.test({
+  entity: {
+    get_number_fact: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const getnumberfact = await client.GetNumberFact().load({ number: 'example_number', type: 'example_type' })
-// getnumberfact is a bare GetNumberFact populated with mock data
+// getnumberfact is the GetNumberFact entity, populated with mock data
+// — call getnumberfact.data() for the record itself
 console.log(getnumberfact)
 ```
 
@@ -184,7 +193,7 @@ require_once 'numbers_sdk.php';
 $client = new NumbersSDK();
 
 
-// Load a specific getnumberfact (returns the bare record; throws on error)
+// Load a specific getnumberfact (returns the ENTITY; call data_get() for the record; throws on error)
 $getnumberfact = $client->GetNumberFact()->load(["number" => "example_number", "type" => "example_type"]);
 print_r($getnumberfact);
 ```
@@ -212,7 +221,7 @@ require_relative "Numbers_sdk"
 client = NumbersSDK.new
 
 
-# Load a specific getnumberfact (returns the bare record; raises on error)
+# Load a specific getnumberfact (returns the ENTITY; call data_get for the record)
 getnumberfact = client.GetNumberFact.load({ "number" => "example_number", "type" => "example_type" })
 puts getnumberfact
 ```
@@ -346,6 +355,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [http://numbersapi.com](http://numbersapi.com)
 

@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import NumbersSDK
-from core.error import NumbersError
-from core.result import NumbersResult
-from core.response import NumbersResponse
-from core.spec import NumbersSpec
-from feature.base_feature import NumbersBaseFeature
+from projectname_sdk.core.error import NumbersError
+from projectname_sdk.core.result import NumbersResult
+from projectname_sdk.core.response import NumbersResponse
+from projectname_sdk.core.spec import NumbersSpec
+from projectname_sdk.feature.base_feature import NumbersBaseFeature
 
 
 def _client():

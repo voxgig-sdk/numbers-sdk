@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const getnumberfact = await client.GetNumberFact().load()
+  const getnumberfact = await client.GetNumberFact().load({ number: "example", type: "example" })
   console.log(getnumberfact)
 } catch (err) {
   console.error('load failed:', err)
@@ -120,8 +120,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NumbersSDK.test()
 
-const getnumberfact = await client.GetNumberFact().load()
-// getnumberfact is a bare entity populated with mock response data
+const getnumberfact = await client.GetNumberFact().load({ number: 'example_number', type: 'example_type' })
+// getnumberfact is the entity, populated with mock response data
+// — call getnumberfact.data() for the record itself
 console.log(getnumberfact)
 ```
 
@@ -140,7 +141,7 @@ Entity instances remember their last match and data:
 const entity = client.GetNumberFact()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ number: 'example_number', type: 'example_type' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -474,7 +475,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const getnumberfact = client.GetNumberFact()
-await getnumberfact.load()
+await getnumberfact.load({ number: "example", type: "example" })
 
 // getnumberfact.data() now returns the getnumberfact data from the last `load`
 // getnumberfact.match() returns the last match criteria

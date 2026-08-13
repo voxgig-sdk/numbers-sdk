@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-getnumberfact, err := client.GetNumberFact(nil).Load(nil, nil)
+getnumberfact, err := client.GetNumberFact(nil).Load(map[string]any{"number": "example", "type": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 getNumberFact, err := client.GetNumberFact(nil).Load(
-    nil, nil,
+    map[string]any{"number": "example", "type": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -464,7 +464,7 @@ stores the returned data and match criteria internally.
 
 ```go
 getnumberfact := client.GetNumberFact(nil)
-getnumberfact.Load(nil, nil)
+getnumberfact.Load(map[string]any{"number": "example", "type": "example"}, nil)
 
 // getnumberfact.Data() now returns the getnumberfact data from the last load
 // getnumberfact.Match() returns the last match criteria

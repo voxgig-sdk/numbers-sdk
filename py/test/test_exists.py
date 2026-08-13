@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Numbers SDK exists test
 
 import pytest
 from numbers_sdk import NumbersSDK

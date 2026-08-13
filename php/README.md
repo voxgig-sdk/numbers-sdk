@@ -35,7 +35,7 @@ $client = new NumbersSDK();
 
 ```php
 try {
-    // load() returns the bare GetNumberFact record (throws on error).
+    // load() returns the ENTITY — call data_get() for the GetNumberFact record (throws on error).
     $getnumberfact = $client->GetNumberFact()->load(["number" => "example_number", "type" => "example_type"]);
     print_r($getnumberfact);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $getnumberfact = $client->GetNumberFact()->load();
+    $getnumberfact = $client->GetNumberFact()->load(["number" => "example", "type" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -123,8 +123,9 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = NumbersSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$getnumberfact = $client->GetNumberFact()->load();
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$getnumberfact = $client->GetNumberFact()->load(["number" => "example", "type" => "example"]);
 print_r($getnumberfact);
 ```
 
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -308,7 +309,7 @@ Create an instance: `$get_number_fact = $client->GetNumberFact();`
 #### Example: Load
 
 ```php
-// load() returns the bare GetNumberFact record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetNumberFact record (throws on error).
 $get_number_fact = $client->GetNumberFact()->load(["number" => "number", "type" => "type"]);
 ```
 
@@ -335,7 +336,7 @@ Create an instance: `$get_number_trivia = $client->GetNumberTrivia();`
 #### Example: Load
 
 ```php
-// load() returns the bare GetNumberTrivia record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetNumberTrivia record (throws on error).
 $get_number_trivia = $client->GetNumberTrivia()->load(["id" => "get_number_trivia_id"]);
 ```
 
@@ -362,7 +363,7 @@ Create an instance: `$random = $client->Random();`
 #### Example: Load
 
 ```php
-// load() returns the bare Random record (throws on error).
+// load() returns the ENTITY — call data_get() for the Random record (throws on error).
 $random = $client->Random()->load(["id" => "random_id"]);
 ```
 
@@ -444,7 +445,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $getnumberfact = $client->GetNumberFact();
-$getnumberfact->load();
+$getnumberfact->load(["number" => "example", "type" => "example"]);
 
 // $getnumberfact->data_get() now returns the getnumberfact data from the last load
 // $getnumberfact->match_get() returns the last match criteria

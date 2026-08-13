@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local getnumberfact, err = client:GetNumberFact():load()
+local getnumberfact, err = client:GetNumberFact():load({ number = "example", type = "example" })
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:GetNumberFact():load()
+local result, err = client:GetNumberFact():load({ number = "example", type = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -422,7 +422,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local getnumberfact = client:GetNumberFact()
-getnumberfact:load()
+getnumberfact:load({ number = "example", type = "example" })
 
 -- getnumberfact:data_get() now returns the getnumberfact data from the last load
 -- getnumberfact:match_get() returns the last match criteria

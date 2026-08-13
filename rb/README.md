@@ -34,7 +34,7 @@ client = NumbersSDK.new
 
 ```ruby
 begin
-  # load returns the bare GetNumberFact record (raises on error).
+  # load returns the ENTITY — call data_get for the GetNumberFact record (raises on error).
   getnumberfact = client.GetNumberFact.load({ "number" => "example_number", "type" => "example_type" })
   puts getnumberfact
 rescue => err
@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  getnumberfact = client.GetNumberFact.load()
+  getnumberfact = client.GetNumberFact.load({ "number" => "example", "type" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -117,8 +117,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = NumbersSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-getnumberfact = client.GetNumberFact.load()
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+getnumberfact = client.GetNumberFact.load({ "number" => "example", "type" => "example" })
 puts getnumberfact
 ```
 
@@ -298,7 +299,7 @@ Create an instance: `get_number_fact = client.GetNumberFact`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetNumberFact record (raises on error).
+# load returns the ENTITY — call data_get for the GetNumberFact record (raises on error).
 get_number_fact = client.GetNumberFact.load({ "number" => "number", "type" => "type" })
 ```
 
@@ -325,7 +326,7 @@ Create an instance: `get_number_trivia = client.GetNumberTrivia`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetNumberTrivia record (raises on error).
+# load returns the ENTITY — call data_get for the GetNumberTrivia record (raises on error).
 get_number_trivia = client.GetNumberTrivia.load({ "id" => "get_number_trivia_id" })
 ```
 
@@ -352,7 +353,7 @@ Create an instance: `random = client.Random`
 #### Example: Load
 
 ```ruby
-# load returns the bare Random record (raises on error).
+# load returns the ENTITY — call data_get for the Random record (raises on error).
 random = client.Random.load({ "id" => "random_id" })
 ```
 
@@ -434,7 +435,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 getnumberfact = client.GetNumberFact
-getnumberfact.load()
+getnumberfact.load({ "number" => "example", "type" => "example" })
 
 # getnumberfact.data_get now returns the getnumberfact data from the last load
 # getnumberfact.match_get returns the last match criteria

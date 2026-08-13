@@ -116,6 +116,7 @@ module NumbersConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{number}/{type}",
                   "parts" => [
@@ -227,6 +228,7 @@ module NumbersConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{number}",
                   "parts" => [
@@ -347,6 +349,7 @@ module NumbersConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random/{type}",
                   "parts" => [

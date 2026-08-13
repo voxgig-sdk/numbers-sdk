@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import NumbersControl
-from core.error import NumbersError
-from core.result import NumbersResult
-from core.spec import NumbersSpec
+from numbers_sdk.config import make_config
+from numbers_sdk.features import _make_feature
+from numbers_sdk.core.control import NumbersControl
+from numbers_sdk.core.error import NumbersError
+from numbers_sdk.core.result import NumbersResult
+from numbers_sdk.core.spec import NumbersSpec
 
 
 # True when this SDK was generated with the named feature.

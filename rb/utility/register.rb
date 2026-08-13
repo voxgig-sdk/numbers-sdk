@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ NumbersUtility.registrar = ->(u) {
   u.prepare_params = NumbersUtilities::PrepareParams
   u.prepare_path = NumbersUtilities::PreparePath
   u.prepare_query = NumbersUtilities::PrepareQuery
+  u.graphql_body = NumbersUtilities::GraphqlBody
+  u.graphql_errors = NumbersUtilities::GraphqlErrors
   u.result_basic = NumbersUtilities::ResultBasic
   u.result_body = NumbersUtilities::ResultBody
   u.result_headers = NumbersUtilities::ResultHeaders

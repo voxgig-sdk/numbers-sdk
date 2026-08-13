@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from numbers_sdk.utility.voxgig_struct import voxgig_struct as vs
 from numbers_sdk import NumbersSDK
-from core import helpers
+from numbers_sdk.core import helpers
 from test import runner
 
 

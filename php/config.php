@@ -121,6 +121,7 @@ class NumbersConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{number}/{type}',
                   'parts' => [
@@ -232,6 +233,7 @@ class NumbersConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{number}',
                   'parts' => [
@@ -352,6 +354,7 @@ class NumbersConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/random/{type}',
                   'parts' => [

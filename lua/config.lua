@@ -115,6 +115,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{number}/{type}",
                 ["parts"] = {
@@ -226,6 +227,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{number}",
                 ["parts"] = {
@@ -346,6 +348,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/random/{type}",
                 ["parts"] = {
