@@ -40,7 +40,7 @@ class NumbersSDK
         $utility = new NumbersUtility();
         $this->_utility = $utility;
 
-        $config = NumbersConfig::make_config();
+        $config = NumbersConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

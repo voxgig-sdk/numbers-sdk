@@ -28,7 +28,7 @@ class NumbersSDK
     utility = NumbersUtility.new
     @_utility = utility
 
-    config = NumbersConfig.make_config
+    config = NumbersConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
