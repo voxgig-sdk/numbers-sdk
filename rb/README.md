@@ -237,10 +237,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -250,10 +250,10 @@ API path: `/{number}/{type}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The trivia fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -263,10 +263,10 @@ API path: `/{number}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -291,10 +291,10 @@ Create an instance: `get_number_fact = client.GetNumberFact`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `Boolean` |  |
-| `number` | `Float` |  |
-| `text` | `String` |  |
-| `type` | `String` |  |
+| `found` | `Boolean` | Whether a fact was found for the requested number |
+| `number` | `Float` | The number the fact is about |
+| `text` | `String` | The fact about the number |
+| `type` | `String` | The type of the fact |
 
 #### Example: Load
 
@@ -318,10 +318,10 @@ Create an instance: `get_number_trivia = client.GetNumberTrivia`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `Boolean` |  |
-| `number` | `Float` |  |
-| `text` | `String` |  |
-| `type` | `String` |  |
+| `found` | `Boolean` | Whether a fact was found for the requested number |
+| `number` | `Float` | The number the fact is about |
+| `text` | `String` | The trivia fact about the number |
+| `type` | `String` | The type of the fact |
 
 #### Example: Load
 
@@ -345,10 +345,10 @@ Create an instance: `random = client.Random`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `Boolean` |  |
-| `number` | `Float` |  |
-| `text` | `String` |  |
-| `type` | `String` |  |
+| `found` | `Boolean` | Whether a fact was found |
+| `number` | `Float` | The number the fact is about |
+| `text` | `String` | The fact about the number |
+| `type` | `String` | The type of the fact |
 
 #### Example: Load
 

@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Numbers",
+			"slug": "numbers",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -35,18 +38,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "found",
+						"short": "Whether a fact was found for the requested number",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "The number the fact is about",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "text",
+						"short": "The fact about the number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The type of the fact",
 						"type": "`$STRING`",
 					},
 				},
@@ -131,18 +138,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "found",
+						"short": "Whether a fact was found for the requested number",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "The number the fact is about",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "text",
+						"short": "The trivia fact about the number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The type of the fact",
 						"type": "`$STRING`",
 					},
 				},
@@ -223,18 +234,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "found",
+						"short": "Whether a fact was found",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "The number the fact is about",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "text",
+						"short": "The fact about the number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The type of the fact",
 						"type": "`$STRING`",
 					},
 				},

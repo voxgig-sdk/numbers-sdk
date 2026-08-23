@@ -227,10 +227,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -240,10 +240,10 @@ API path: `/{number}/{type}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The trivia fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -253,10 +253,10 @@ API path: `/{number}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -281,10 +281,10 @@ Create an instance: `local get_number_fact = client:GetNumberFact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `boolean` |  |
-| `number` | `number` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `boolean` | Whether a fact was found for the requested number |
+| `number` | `number` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -307,10 +307,10 @@ Create an instance: `local get_number_trivia = client:GetNumberTrivia(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `boolean` |  |
-| `number` | `number` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `boolean` | Whether a fact was found for the requested number |
+| `number` | `number` | The number the fact is about |
+| `text` | `string` | The trivia fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -333,10 +333,10 @@ Create an instance: `local random = client:Random(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `boolean` |  |
-| `number` | `number` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `boolean` | Whether a fact was found |
+| `number` | `number` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 

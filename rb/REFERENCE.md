@@ -101,10 +101,10 @@ get_number_fact = client.GetNumberFact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | `Boolean` | No |  |
-| `number` | `Float` | No |  |
-| `text` | `String` | No |  |
-| `type` | `String` | No |  |
+| `found` | `Boolean` | No | Whether a fact was found for the requested number |
+| `number` | `Float` | No | The number the fact is about |
+| `text` | `String` | No | The fact about the number |
+| `type` | `String` | No | The type of the fact |
 
 ### Operations
 
@@ -156,10 +156,10 @@ get_number_trivia = client.GetNumberTrivia
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | `Boolean` | No |  |
-| `number` | `Float` | No |  |
-| `text` | `String` | No |  |
-| `type` | `String` | No |  |
+| `found` | `Boolean` | No | Whether a fact was found for the requested number |
+| `number` | `Float` | No | The number the fact is about |
+| `text` | `String` | No | The trivia fact about the number |
+| `type` | `String` | No | The type of the fact |
 
 ### Operations
 
@@ -211,10 +211,10 @@ random = client.Random
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | `Boolean` | No |  |
-| `number` | `Float` | No |  |
-| `text` | `String` | No |  |
-| `type` | `String` | No |  |
+| `found` | `Boolean` | No | Whether a fact was found |
+| `number` | `Float` | No | The number the fact is about |
+| `text` | `String` | No | The fact about the number |
+| `type` | `String` | No | The type of the fact |
 
 ### Operations
 

@@ -100,10 +100,10 @@ $get_number_fact = $client->GetNumberFact();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | `bool` | No |  |
-| `number` | `float` | No |  |
-| `text` | `string` | No |  |
-| `type` | `string` | No |  |
+| `found` | `bool` | No | Whether a fact was found for the requested number |
+| `number` | `float` | No | The number the fact is about |
+| `text` | `string` | No | The fact about the number |
+| `type` | `string` | No | The type of the fact |
 
 ### Operations
 
@@ -155,10 +155,10 @@ $get_number_trivia = $client->GetNumberTrivia();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | `bool` | No |  |
-| `number` | `float` | No |  |
-| `text` | `string` | No |  |
-| `type` | `string` | No |  |
+| `found` | `bool` | No | Whether a fact was found for the requested number |
+| `number` | `float` | No | The number the fact is about |
+| `text` | `string` | No | The trivia fact about the number |
+| `type` | `string` | No | The type of the fact |
 
 ### Operations
 
@@ -210,10 +210,10 @@ $random = $client->Random();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `found` | `bool` | No |  |
-| `number` | `float` | No |  |
-| `text` | `string` | No |  |
-| `type` | `string` | No |  |
+| `found` | `bool` | No | Whether a fact was found |
+| `number` | `float` | No | The number the fact is about |
+| `text` | `string` | No | The fact about the number |
+| `type` | `string` | No | The type of the fact |
 
 ### Operations
 

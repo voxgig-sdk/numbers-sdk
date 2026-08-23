@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -287,10 +287,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: load.
 
@@ -300,10 +300,10 @@ API path: `/{number}/{type}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The trivia fact about the number |
+| `type` | The type of the fact |
 
 Operations: load.
 
@@ -313,10 +313,10 @@ API path: `/{number}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: load.
 
@@ -341,10 +341,10 @@ Create an instance: `const get_number_fact = client.GetNumberFact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `boolean` |  |
-| `number` | `number` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `boolean` | Whether a fact was found for the requested number |
+| `number` | `number` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -367,10 +367,10 @@ Create an instance: `const get_number_trivia = client.GetNumberTrivia()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `boolean` |  |
-| `number` | `number` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `boolean` | Whether a fact was found for the requested number |
+| `number` | `number` | The number the fact is about |
+| `text` | `string` | The trivia fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -393,10 +393,10 @@ Create an instance: `const random = client.Random()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `boolean` |  |
-| `number` | `number` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `boolean` | Whether a fact was found |
+| `number` | `number` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 

@@ -1,6 +1,6 @@
-# Entity: get_number_fact
+# Entity: random
 
-main: kit: entity: get_number_fact: {
+main: kit: entity: random: {
 
   alias: field: {}
 
@@ -8,26 +8,30 @@ main: kit: entity: get_number_fact: {
     {
       name: "found"
       req: false
+      short: "Whether a fact was found"
       type: "`$BOOLEAN`"
     }
     {
       name: "number"
       req: false
+      short: "The number the fact is about"
       type: "`$NUMBER`"
     }
     {
       name: "text"
       req: false
+      short: "The fact about the number"
       type: "`$STRING`"
     }
     {
       name: "type"
       req: false
+      short: "The type of the fact"
       type: "`$STRING`"
     }
   ]
 
-  name: "get_number_fact"
+  name: "random"
   op: {
     load: {
       name: "load"
@@ -36,16 +40,8 @@ main: kit: entity: get_number_fact: {
           args: {
             params: [
               {
-                example: "42"
                 kind: "param"
-                name: "number"
-                orig: "number"
-                reqd: true
-                type: "`$STRING`"
-              }
-              {
-                kind: "param"
-                name: "type"
+                name: "id"
                 orig: "type"
                 reqd: true
                 type: "`$STRING`"
@@ -69,28 +65,39 @@ main: kit: entity: get_number_fact: {
                 type: "`$BOOLEAN`"
               }
               {
-                example: "default"
                 kind: "query"
-                name: "notfound"
-                orig: "notfound"
+                name: "max"
+                orig: "max"
                 reqd: false
-                type: "`$STRING`"
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "min"
+                orig: "min"
+                reqd: false
+                type: "`$INTEGER`"
               }
             ]
           }
           method: "GET"
-          orig: "/{number}/{type}"
+          orig: "/random/{type}"
           parts: [
-            "{number}"
-            "{type}"
+            "random"
+            "{id}"
           ]
+          rename: {
+            param: {
+              type: "id"
+            }
+          }
           select: {
             exist: [
               "fragment"
+              "id"
               "json"
-              "notfound"
-              "number"
-              "type"
+              "max"
+              "min"
             ]
           }
           transform: {

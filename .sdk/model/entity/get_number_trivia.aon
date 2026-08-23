@@ -8,21 +8,25 @@ main: kit: entity: get_number_trivia: {
     {
       name: "found"
       req: false
+      short: "Whether a fact was found for the requested number"
       type: "`$BOOLEAN`"
     }
     {
       name: "number"
       req: false
+      short: "The number the fact is about"
       type: "`$NUMBER`"
     }
     {
       name: "text"
       req: false
+      short: "The trivia fact about the number"
       type: "`$STRING`"
     }
     {
       name: "type"
       req: false
+      short: "The type of the fact"
       type: "`$STRING`"
     }
   ]

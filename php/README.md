@@ -247,10 +247,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -260,10 +260,10 @@ API path: `/{number}/{type}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found for the requested number |
+| `number` | The number the fact is about |
+| `text` | The trivia fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -273,10 +273,10 @@ API path: `/{number}`
 
 | Field | Description |
 | --- | --- |
-| `found` |  |
-| `number` |  |
-| `text` |  |
-| `type` |  |
+| `found` | Whether a fact was found |
+| `number` | The number the fact is about |
+| `text` | The fact about the number |
+| `type` | The type of the fact |
 
 Operations: Load.
 
@@ -301,10 +301,10 @@ Create an instance: `$get_number_fact = $client->GetNumberFact();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `bool` |  |
-| `number` | `float` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `bool` | Whether a fact was found for the requested number |
+| `number` | `float` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -328,10 +328,10 @@ Create an instance: `$get_number_trivia = $client->GetNumberTrivia();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `bool` |  |
-| `number` | `float` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `bool` | Whether a fact was found for the requested number |
+| `number` | `float` | The number the fact is about |
+| `text` | `string` | The trivia fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -355,10 +355,10 @@ Create an instance: `$random = $client->Random();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `bool` |  |
-| `number` | `float` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `bool` | Whether a fact was found |
+| `number` | `float` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 

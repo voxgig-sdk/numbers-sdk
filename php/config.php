@@ -33,6 +33,9 @@ class NumbersConfig
         return [
             "main" => [
                 "name" => "Numbers",
+                "slug" => "numbers",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -57,18 +60,22 @@ class NumbersConfig
           'fields' => [
             [
               'name' => 'found',
+              'short' => 'Whether a fact was found for the requested number',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'number',
+              'short' => 'The number the fact is about',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'text',
+              'short' => 'The fact about the number',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'The type of the fact',
               'type' => '`$STRING`',
             ],
           ],
@@ -153,18 +160,22 @@ class NumbersConfig
           'fields' => [
             [
               'name' => 'found',
+              'short' => 'Whether a fact was found for the requested number',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'number',
+              'short' => 'The number the fact is about',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'text',
+              'short' => 'The trivia fact about the number',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'The type of the fact',
               'type' => '`$STRING`',
             ],
           ],
@@ -245,18 +256,22 @@ class NumbersConfig
           'fields' => [
             [
               'name' => 'found',
+              'short' => 'Whether a fact was found',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'number',
+              'short' => 'The number the fact is about',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'text',
+              'short' => 'The fact about the number',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'short' => 'The type of the fact',
               'type' => '`$STRING`',
             ],
           ],

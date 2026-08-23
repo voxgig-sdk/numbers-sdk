@@ -36,24 +36,28 @@
               "active": true,
               "name": "found",
               "req": false,
+              "short": "Whether a fact was found for the requested number",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "The number the fact is about",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "text",
               "req": false,
+              "short": "The fact about the number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The type of the fact",
               "type": "`$STRING`"
             }
           ],
@@ -153,24 +157,28 @@
               "active": true,
               "name": "found",
               "req": false,
+              "short": "Whether a fact was found for the requested number",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "The number the fact is about",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "text",
               "req": false,
+              "short": "The trivia fact about the number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The type of the fact",
               "type": "`$STRING`"
             }
           ],
@@ -265,24 +273,28 @@
               "active": true,
               "name": "found",
               "req": false,
+              "short": "Whether a fact was found",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "The number the fact is about",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "text",
               "req": false,
+              "short": "The fact about the number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The type of the fact",
               "type": "`$STRING`"
             }
           ],

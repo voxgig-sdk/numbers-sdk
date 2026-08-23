@@ -6,7 +6,7 @@ The Golang SDK for the Numbers API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.GetNumberFact(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,10 +260,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"found"` |  |
-| `"number"` |  |
-| `"text"` |  |
-| `"type"` |  |
+| `"found"` | Whether a fact was found for the requested number |
+| `"number"` | The number the fact is about |
+| `"text"` | The fact about the number |
+| `"type"` | The type of the fact |
 
 Operations: Load.
 
@@ -273,10 +273,10 @@ API path: `/{number}/{type}`
 
 | Field | Description |
 | --- | --- |
-| `"found"` |  |
-| `"number"` |  |
-| `"text"` |  |
-| `"type"` |  |
+| `"found"` | Whether a fact was found for the requested number |
+| `"number"` | The number the fact is about |
+| `"text"` | The trivia fact about the number |
+| `"type"` | The type of the fact |
 
 Operations: Load.
 
@@ -286,10 +286,10 @@ API path: `/{number}`
 
 | Field | Description |
 | --- | --- |
-| `"found"` |  |
-| `"number"` |  |
-| `"text"` |  |
-| `"type"` |  |
+| `"found"` | Whether a fact was found |
+| `"number"` | The number the fact is about |
+| `"text"` | The fact about the number |
+| `"type"` | The type of the fact |
 
 Operations: Load.
 
@@ -314,10 +314,10 @@ Create an instance: `getNumberFact := client.GetNumberFact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `bool` |  |
-| `number` | `float64` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `bool` | Whether a fact was found for the requested number |
+| `number` | `float64` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -344,10 +344,10 @@ Create an instance: `getNumberTrivia := client.GetNumberTrivia(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `bool` |  |
-| `number` | `float64` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `bool` | Whether a fact was found for the requested number |
+| `number` | `float64` | The number the fact is about |
+| `text` | `string` | The trivia fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
@@ -374,10 +374,10 @@ Create an instance: `random := client.Random(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `found` | `bool` |  |
-| `number` | `float64` |  |
-| `text` | `string` |  |
-| `type` | `string` |  |
+| `found` | `bool` | Whether a fact was found |
+| `number` | `float64` | The number the fact is about |
+| `text` | `string` | The fact about the number |
+| `type` | `string` | The type of the fact |
 
 #### Example: Load
 
