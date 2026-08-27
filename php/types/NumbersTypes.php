@@ -32,6 +32,7 @@ class GetNumberFactLoadMatch
 class GetNumberTrivia
 {
     public ?bool $found = null;
+    public ?string $id = null;
     public ?float $number = null;
     public ?string $text = null;
     public ?string $type = null;
@@ -47,6 +48,7 @@ class GetNumberTriviaLoadMatch
 class Random
 {
     public ?bool $found = null;
+    public ?string $id = null;
     public ?float $number = null;
     public ?string $text = null;
     public ?string $type = null;

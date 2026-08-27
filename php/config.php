@@ -42,6 +42,7 @@ class NumbersConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -164,6 +165,10 @@ class NumbersConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'number',
               'short' => 'The number the fact is about',
               'type' => '`$NUMBER`',
@@ -258,6 +263,10 @@ class NumbersConfig
               'name' => 'found',
               'short' => 'Whether a fact was found',
               'type' => '`$BOOLEAN`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'number',

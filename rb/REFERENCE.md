@@ -157,6 +157,7 @@ get_number_trivia = client.GetNumberTrivia
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `Boolean` | No | Whether a fact was found for the requested number |
+| `id` | `String` | No |  |
 | `number` | `Float` | No | The number the fact is about |
 | `text` | `String` | No | The trivia fact about the number |
 | `type` | `String` | No | The type of the fact |
@@ -212,6 +213,7 @@ random = client.Random
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `Boolean` | No | Whether a fact was found |
+| `id` | `String` | No |  |
 | `number` | `Float` | No | The number the fact is about |
 | `text` | `String` | No | The fact about the number |
 | `type` | `String` | No | The type of the fact |

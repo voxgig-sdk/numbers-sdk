@@ -42,23 +42,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = NumbersSDK.test({
   entity: {
-    get_number_fact: {
+    get_number_trivia: {
       test01: { id: 'test01' },
     },
   },
 })
-const getnumberfact = await client.GetNumberFact().load({ number: 'example_number', type: 'example_type' })
-// getnumberfact is the GetNumberFact entity, populated with mock data
-// — call getnumberfact.data() for the record itself
-console.log(getnumberfact)
+const getnumbertrivia = await client.GetNumberTrivia().load({ id: 'test01' })
+// getnumbertrivia is the GetNumberTrivia entity, populated with mock data
+// — call getnumbertrivia.data() for the record itself
+console.log(getnumbertrivia)
 ```
 
 ### Python
 
 ```python
 client = NumbersSDK.test()
-getnumberfact = client.GetNumberFact().load({"number": "example", "type": "example"})
-print(getnumberfact)
+getnumbertrivia = client.GetNumberTrivia().load({"id": "test01"})
+print(getnumbertrivia)
 ```
 
 ### PHP
@@ -66,17 +66,17 @@ print(getnumberfact)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = NumbersSDK::test([
-    "entity" => ["getnumberfact" => ["test01" => []]],
+    "entity" => ["getnumbertrivia" => ["test01" => ["id" => "test01"]]],
 ]);
-$getnumberfact = $client->GetNumberFact()->load(["number" => "example", "type" => "example"]);
+$getnumbertrivia = $client->GetNumberTrivia()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.GetNumberFact(nil).Load(
-    nil, nil,
+result, err := client.GetNumberTrivia(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -85,16 +85,16 @@ result, err := client.GetNumberFact(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = NumbersSDK.test({
-  "entity" => { "getnumberfact" => { "test01" => {} } },
+  "entity" => { "getnumbertrivia" => { "test01" => { "id" => "test01" } } },
 })
-getnumberfact = client.GetNumberFact.load({ "number" => "example", "type" => "example" })
+getnumbertrivia = client.GetNumberTrivia.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:GetNumberFact():load({ number = "example", type = "example" })
+local result, err = client:GetNumberTrivia():load({ id = "test01" })
 ```
 
 ## Packages

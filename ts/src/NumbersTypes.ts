@@ -19,6 +19,7 @@ export interface GetNumberFactLoadMatch {
 
 export interface GetNumberTrivia {
   found?: boolean
+  id?: string
   number?: number
   text?: string
   type?: string
@@ -30,6 +31,7 @@ export interface GetNumberTriviaLoadMatch {
 
 export interface Random {
   found?: boolean
+  id?: string
   number?: number
   text?: string
   type?: string

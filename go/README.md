@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-getnumberfact, err := client.GetNumberFact(nil).Load(map[string]any{"number": "example", "type": "example"}, nil)
+getnumbertrivia, err := client.GetNumberTrivia(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = getnumberfact
+_ = getnumbertrivia
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getNumberFact, err := client.GetNumberFact(nil).Load(
-    map[string]any{"number": "example", "type": "example"}, nil,
+getNumberTrivia, err := client.GetNumberTrivia(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getNumberFact) // the returned mock data
+fmt.Println(getNumberTrivia) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -274,6 +274,7 @@ API path: `/{number}/{type}`
 | Field | Description |
 | --- | --- |
 | `"found"` | Whether a fact was found for the requested number |
+| `"id"` |  |
 | `"number"` | The number the fact is about |
 | `"text"` | The trivia fact about the number |
 | `"type"` | The type of the fact |
@@ -287,6 +288,7 @@ API path: `/{number}`
 | Field | Description |
 | --- | --- |
 | `"found"` | Whether a fact was found |
+| `"id"` |  |
 | `"number"` | The number the fact is about |
 | `"text"` | The fact about the number |
 | `"type"` | The type of the fact |
@@ -345,6 +347,7 @@ Create an instance: `getNumberTrivia := client.GetNumberTrivia(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `bool` | Whether a fact was found for the requested number |
+| `id` | `string` |  |
 | `number` | `float64` | The number the fact is about |
 | `text` | `string` | The trivia fact about the number |
 | `type` | `string` | The type of the fact |
@@ -375,6 +378,7 @@ Create an instance: `random := client.Random(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `bool` | Whether a fact was found |
+| `id` | `string` |  |
 | `number` | `float64` | The number the fact is about |
 | `text` | `string` | The fact about the number |
 | `type` | `string` | The type of the fact |
@@ -463,11 +467,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-getnumberfact := client.GetNumberFact(nil)
-getnumberfact.Load(map[string]any{"number": "example", "type": "example"}, nil)
+getnumbertrivia := client.GetNumberTrivia(nil)
+getnumbertrivia.Load(map[string]any{"id": "example_id"}, nil)
 
-// getnumberfact.Data() now returns the getnumberfact data from the last load
-// getnumberfact.Match() returns the last match criteria
+// getnumbertrivia.Data() now returns the getnumbertrivia data from the last load
+// getnumbertrivia.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

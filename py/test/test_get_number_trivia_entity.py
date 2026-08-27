@@ -48,9 +48,13 @@ class TestGetNumberTriviaEntity:
 
         # LOAD
         get_number_trivia_ref01_ent = client.GetNumberTrivia(None)
-        get_number_trivia_ref01_match_dt0 = {}
+        get_number_trivia_ref01_match_dt0 = {
+            "id": get_number_trivia_ref01_data["id"],
+        }
         get_number_trivia_ref01_data_dt0_loaded = get_number_trivia_ref01_ent.load(get_number_trivia_ref01_match_dt0, None)
-        assert get_number_trivia_ref01_data_dt0_loaded is not None
+        get_number_trivia_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(get_number_trivia_ref01_data_dt0_loaded))
+        assert get_number_trivia_ref01_data_dt0_load_result is not None
+        assert get_number_trivia_ref01_data_dt0_load_result["id"] == get_number_trivia_ref01_data["id"]
 
 
 

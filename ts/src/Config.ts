@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -177,6 +178,10 @@ class Config {
           "type": "`$BOOLEAN`"
         },
         {
+          "name": "id",
+          "type": "`$STRING`"
+        },
+        {
           "name": "number",
           "short": "The number the fact is about",
           "type": "`$NUMBER`"
@@ -271,6 +276,10 @@ class Config {
           "name": "found",
           "short": "Whether a fact was found",
           "type": "`$BOOLEAN`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "number",

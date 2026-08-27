@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local getnumberfact, err = client:GetNumberFact():load({ number = "example", type = "example" })
+local getnumbertrivia, err = client:GetNumberTrivia():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:GetNumberFact():load({ number = "example", type = "example" })
+local result, err = client:GetNumberTrivia():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -241,6 +241,7 @@ API path: `/{number}/{type}`
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found for the requested number |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The trivia fact about the number |
 | `type` | The type of the fact |
@@ -254,6 +255,7 @@ API path: `/{number}`
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The fact about the number |
 | `type` | The type of the fact |
@@ -308,6 +310,7 @@ Create an instance: `local get_number_trivia = client:GetNumberTrivia(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `boolean` | Whether a fact was found for the requested number |
+| `id` | `string` |  |
 | `number` | `number` | The number the fact is about |
 | `text` | `string` | The trivia fact about the number |
 | `type` | `string` | The type of the fact |
@@ -334,6 +337,7 @@ Create an instance: `local random = client:Random(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `boolean` | Whether a fact was found |
+| `id` | `string` |  |
 | `number` | `number` | The number the fact is about |
 | `text` | `string` | The fact about the number |
 | `type` | `string` | The type of the fact |
@@ -421,11 +425,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local getnumberfact = client:GetNumberFact()
-getnumberfact:load({ number = "example", type = "example" })
+local getnumbertrivia = client:GetNumberTrivia()
+getnumbertrivia:load({ id = "example_id" })
 
--- getnumberfact:data_get() now returns the getnumberfact data from the last load
--- getnumberfact:match_get() returns the last match criteria
+-- getnumbertrivia:data_get() now returns the getnumbertrivia data from the last load
+-- getnumbertrivia:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

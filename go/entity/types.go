@@ -29,6 +29,7 @@ type GetNumberFactLoadMatch struct {
 // GetNumberTrivia is the typed data model for the get_number_trivia entity.
 type GetNumberTrivia struct {
 	Found *bool `json:"found,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Number *float64 `json:"number,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -42,6 +43,7 @@ type GetNumberTriviaLoadMatch struct {
 // Random is the typed data model for the random entity.
 type Random struct {
 	Found *bool `json:"found,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Number *float64 `json:"number,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Type *string `json:"type,omitempty"`

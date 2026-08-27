@@ -47,6 +47,9 @@ GetNumberFactLoadMatch = Struct.new(
 # @!attribute [rw] found
 #   @return [Boolean, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] number
 #   @return [Float, nil]
 #
@@ -57,6 +60,7 @@ GetNumberFactLoadMatch = Struct.new(
 #   @return [String, nil]
 GetNumberTrivia = Struct.new(
   :found,
+  :id,
   :number,
   :text,
   :type,
@@ -77,6 +81,9 @@ GetNumberTriviaLoadMatch = Struct.new(
 # @!attribute [rw] found
 #   @return [Boolean, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] number
 #   @return [Float, nil]
 #
@@ -87,6 +94,7 @@ GetNumberTriviaLoadMatch = Struct.new(
 #   @return [String, nil]
 RandomType = Struct.new(
   :found,
+  :id,
   :number,
   :text,
   :type,

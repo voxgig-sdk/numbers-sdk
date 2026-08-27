@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -138,6 +139,10 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "number",
             ["short"] = "The number the fact is about",
             ["type"] = "`$NUMBER`",
@@ -232,6 +237,10 @@ local function make_config()
             ["name"] = "found",
             ["short"] = "Whether a fact was found",
             ["type"] = "`$BOOLEAN`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "number",

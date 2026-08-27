@@ -44,10 +44,14 @@ describe("GetNumberTriviaEntity", function()
 
     -- LOAD
     local get_number_trivia_ref01_ent = client:GetNumberTrivia(nil)
-    local get_number_trivia_ref01_match_dt0 = {}
+    local get_number_trivia_ref01_match_dt0 = {
+      id = get_number_trivia_ref01_data["id"],
+    }
     local get_number_trivia_ref01_data_dt0_loaded, err = get_number_trivia_ref01_ent:load(get_number_trivia_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(get_number_trivia_ref01_data_dt0_loaded)
+    local get_number_trivia_ref01_data_dt0_load_result = helpers.to_map(type(get_number_trivia_ref01_data_dt0_loaded) == 'table' and get_number_trivia_ref01_data_dt0_loaded.data_get and get_number_trivia_ref01_data_dt0_loaded:data_get() or get_number_trivia_ref01_data_dt0_loaded)
+    assert.is_not_nil(get_number_trivia_ref01_data_dt0_load_result)
+    assert.are.equal(get_number_trivia_ref01_data_dt0_load_result["id"], get_number_trivia_ref01_data["id"])
 
   end)
 end)

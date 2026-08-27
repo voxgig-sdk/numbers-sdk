@@ -154,6 +154,7 @@ local get_number_trivia = client:GetNumberTrivia(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `boolean` | No | Whether a fact was found for the requested number |
+| `id` | `string` | No |  |
 | `number` | `number` | No | The number the fact is about |
 | `text` | `string` | No | The trivia fact about the number |
 | `type` | `string` | No | The type of the fact |
@@ -209,6 +210,7 @@ local random = client:Random(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `boolean` | No | Whether a fact was found |
+| `id` | `string` | No |  |
 | `number` | `number` | No | The number the fact is about |
 | `text` | `string` | No | The fact about the number |
 | `type` | `string` | No | The type of the fact |

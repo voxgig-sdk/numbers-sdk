@@ -12,6 +12,11 @@ main: kit: entity: get_number_trivia: {
       type: "`$BOOLEAN`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "number"
       req: false
       short: "The number the fact is about"
@@ -30,6 +35,11 @@ main: kit: entity: get_number_trivia: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "get_number_trivia"
   op: {

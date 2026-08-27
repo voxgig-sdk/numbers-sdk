@@ -30,6 +30,7 @@ class GetNumberFactLoadMatch(TypedDict):
 
 class GetNumberTrivia(TypedDict, total=False):
     found: bool
+    id: str
     number: float
     text: str
     type: str
@@ -41,6 +42,7 @@ class GetNumberTriviaLoadMatch(TypedDict):
 
 class Random(TypedDict, total=False):
     found: bool
+    id: str
     number: float
     text: str
     type: str

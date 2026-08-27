@@ -150,6 +150,7 @@ get_number_trivia = client.GetNumberTrivia()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `bool` | No | Whether a fact was found for the requested number |
+| `id` | `str` | No |  |
 | `number` | `float` | No | The number the fact is about |
 | `text` | `str` | No | The trivia fact about the number |
 | `type` | `str` | No | The type of the fact |
@@ -204,6 +205,7 @@ random = client.Random()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `bool` | No | Whether a fact was found |
+| `id` | `str` | No |  |
 | `number` | `float` | No | The number the fact is about |
 | `text` | `str` | No | The fact about the number |
 | `type` | `str` | No | The type of the fact |

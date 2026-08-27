@@ -61,13 +61,19 @@ func TestGetNumberTriviaEntity(t *testing.T) {
 
 		// LOAD
 		getNumberTriviaRef01Ent := client.GetNumberTrivia(nil)
-		getNumberTriviaRef01MatchDt0 := map[string]any{}
+		getNumberTriviaRef01MatchDt0 := map[string]any{
+			"id": getNumberTriviaRef01Data["id"],
+		}
 		getNumberTriviaRef01DataDt0Loaded, err := getNumberTriviaRef01Ent.Load(getNumberTriviaRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if getNumberTriviaRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		getNumberTriviaRef01DataDt0LoadResult := core.ToMapAny(entityData(getNumberTriviaRef01DataDt0Loaded))
+		if getNumberTriviaRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if getNumberTriviaRef01DataDt0LoadResult["id"] != getNumberTriviaRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

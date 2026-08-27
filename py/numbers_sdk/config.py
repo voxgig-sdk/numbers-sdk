@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -159,6 +160,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "number",
             "short": "The number the fact is about",
             "type": "`$NUMBER`",
@@ -253,6 +258,10 @@ def make_config():
             "name": "found",
             "short": "Whether a fact was found",
             "type": "`$BOOLEAN`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "number",

@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $getnumberfact = $client->GetNumberFact()->load(["number" => "example", "type" => "example"]);
+    $getnumbertrivia = $client->GetNumberTrivia()->load(["id" => "example_id"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -118,15 +118,18 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = NumbersSDK::test();
+$client = NumbersSDK::test([
+    "entity" => ["getnumbertrivia" => ["test01" => ["id" => "test01"]]],
+]);
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$getnumberfact = $client->GetNumberFact()->load(["number" => "example", "type" => "example"]);
-print_r($getnumberfact);
+$getnumbertrivia = $client->GetNumberTrivia()->load(["id" => "test01"]);
+print_r($getnumbertrivia);
 ```
 
 ### Use a custom fetch function
@@ -261,6 +264,7 @@ API path: `/{number}/{type}`
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found for the requested number |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The trivia fact about the number |
 | `type` | The type of the fact |
@@ -274,6 +278,7 @@ API path: `/{number}`
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The fact about the number |
 | `type` | The type of the fact |
@@ -329,6 +334,7 @@ Create an instance: `$get_number_trivia = $client->GetNumberTrivia();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `bool` | Whether a fact was found for the requested number |
+| `id` | `string` |  |
 | `number` | `float` | The number the fact is about |
 | `text` | `string` | The trivia fact about the number |
 | `type` | `string` | The type of the fact |
@@ -356,6 +362,7 @@ Create an instance: `$random = $client->Random();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `bool` | Whether a fact was found |
+| `id` | `string` |  |
 | `number` | `float` | The number the fact is about |
 | `text` | `string` | The fact about the number |
 | `type` | `string` | The type of the fact |
@@ -444,11 +451,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getnumberfact = $client->GetNumberFact();
-$getnumberfact->load(["number" => "example", "type" => "example"]);
+$getnumbertrivia = $client->GetNumberTrivia();
+$getnumbertrivia->load(["id" => "example_id"]);
 
-// $getnumberfact->data_get() now returns the getnumberfact data from the last load
-// $getnumberfact->match_get() returns the last match criteria
+// $getnumbertrivia->data_get() now returns the getnumbertrivia data from the last load
+// $getnumbertrivia->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

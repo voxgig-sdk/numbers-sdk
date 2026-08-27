@@ -18,6 +18,7 @@
 
 ---@class GetNumberTrivia
 ---@field found? boolean
+---@field id? string
 ---@field number? number
 ---@field text? string
 ---@field type? string
@@ -27,6 +28,7 @@
 
 ---@class Random
 ---@field found? boolean
+---@field id? string
 ---@field number? number
 ---@field text? string
 ---@field type? string
