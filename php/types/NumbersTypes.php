@@ -26,6 +26,9 @@ class GetNumberFactLoadMatch
 {
     public string $number;
     public string $type;
+    public ?bool $fragment = null;
+    public ?bool $json = null;
+    public ?string $notfound = null;
 }
 
 /** GetNumberTrivia entity data model. */
@@ -42,6 +45,9 @@ class GetNumberTrivia
 class GetNumberTriviaLoadMatch
 {
     public string $id;
+    public ?bool $fragment = null;
+    public ?bool $json = null;
+    public ?string $notfound = null;
 }
 
 /** Random entity data model. */
@@ -58,5 +64,9 @@ class Random
 class RandomLoadMatch
 {
     public string $id;
+    public ?bool $fragment = null;
+    public ?bool $json = null;
+    public ?int $max = null;
+    public ?int $min = null;
 }
 

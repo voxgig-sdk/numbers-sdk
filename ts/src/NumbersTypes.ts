@@ -15,6 +15,9 @@ export interface GetNumberFact {
 export interface GetNumberFactLoadMatch {
   number: string
   type: string
+  fragment?: boolean
+  json?: boolean
+  notfound?: string
 }
 
 export interface GetNumberTrivia {
@@ -27,6 +30,9 @@ export interface GetNumberTrivia {
 
 export interface GetNumberTriviaLoadMatch {
   id: string
+  fragment?: boolean
+  json?: boolean
+  notfound?: string
 }
 
 export interface Random {
@@ -39,5 +45,9 @@ export interface Random {
 
 export interface RandomLoadMatch {
   id: string
+  fragment?: boolean
+  json?: boolean
+  max?: number
+  min?: number
 }
 

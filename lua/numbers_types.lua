@@ -15,6 +15,9 @@
 ---@class GetNumberFactLoadMatch
 ---@field number string
 ---@field type string
+---@field fragment? boolean
+---@field json? boolean
+---@field notfound? string
 
 ---@class GetNumberTrivia
 ---@field found? boolean
@@ -25,6 +28,9 @@
 
 ---@class GetNumberTriviaLoadMatch
 ---@field id string
+---@field fragment? boolean
+---@field json? boolean
+---@field notfound? string
 
 ---@class Random
 ---@field found? boolean
@@ -35,6 +41,10 @@
 
 ---@class RandomLoadMatch
 ---@field id string
+---@field fragment? boolean
+---@field json? boolean
+---@field max? number
+---@field min? number
 
 local M = {}
 

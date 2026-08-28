@@ -36,9 +36,21 @@ GetNumberFact = Struct.new(
 #
 # @!attribute [rw] type
 #   @return [String]
+#
+# @!attribute [rw] fragment
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] json
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] notfound
+#   @return [String, nil]
 GetNumberFactLoadMatch = Struct.new(
   :number,
   :type,
+  :fragment,
+  :json,
+  :notfound,
   keyword_init: true
 )
 
@@ -71,8 +83,20 @@ GetNumberTrivia = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fragment
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] json
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] notfound
+#   @return [String, nil]
 GetNumberTriviaLoadMatch = Struct.new(
   :id,
+  :fragment,
+  :json,
+  :notfound,
   keyword_init: true
 )
 
@@ -105,8 +129,24 @@ RandomType = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] fragment
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] json
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] max
+#   @return [Integer, nil]
+#
+# @!attribute [rw] min
+#   @return [Integer, nil]
 RandomLoadMatch = Struct.new(
   :id,
+  :fragment,
+  :json,
+  :max,
+  :min,
   keyword_init: true
 )
 

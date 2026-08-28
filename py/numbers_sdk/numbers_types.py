@@ -23,9 +23,15 @@ class GetNumberFact(TypedDict, total=False):
     type: str
 
 
-class GetNumberFactLoadMatch(TypedDict):
+class GetNumberFactLoadMatchRequired(TypedDict):
     number: str
     type: str
+
+
+class GetNumberFactLoadMatch(GetNumberFactLoadMatchRequired, total=False):
+    fragment: bool
+    json: bool
+    notfound: str
 
 
 class GetNumberTrivia(TypedDict, total=False):
@@ -36,8 +42,14 @@ class GetNumberTrivia(TypedDict, total=False):
     type: str
 
 
-class GetNumberTriviaLoadMatch(TypedDict):
+class GetNumberTriviaLoadMatchRequired(TypedDict):
     id: str
+
+
+class GetNumberTriviaLoadMatch(GetNumberTriviaLoadMatchRequired, total=False):
+    fragment: bool
+    json: bool
+    notfound: str
 
 
 class Random(TypedDict, total=False):
@@ -48,5 +60,12 @@ class Random(TypedDict, total=False):
     type: str
 
 
-class RandomLoadMatch(TypedDict):
+class RandomLoadMatchRequired(TypedDict):
     id: str
+
+
+class RandomLoadMatch(RandomLoadMatchRequired, total=False):
+    fragment: bool
+    json: bool
+    max: int
+    min: int

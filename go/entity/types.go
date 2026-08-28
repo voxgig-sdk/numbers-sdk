@@ -24,6 +24,9 @@ type GetNumberFact struct {
 type GetNumberFactLoadMatch struct {
 	Number string `json:"number"`
 	Type string `json:"type"`
+	Fragment *bool `json:"fragment,omitempty"`
+	Json *bool `json:"json,omitempty"`
+	Notfound *string `json:"notfound,omitempty"`
 }
 
 // GetNumberTrivia is the typed data model for the get_number_trivia entity.
@@ -38,6 +41,9 @@ type GetNumberTrivia struct {
 // GetNumberTriviaLoadMatch is the typed request payload for GetNumberTrivia.LoadTyped.
 type GetNumberTriviaLoadMatch struct {
 	Id string `json:"id"`
+	Fragment *bool `json:"fragment,omitempty"`
+	Json *bool `json:"json,omitempty"`
+	Notfound *string `json:"notfound,omitempty"`
 }
 
 // Random is the typed data model for the random entity.
@@ -52,6 +58,10 @@ type Random struct {
 // RandomLoadMatch is the typed request payload for Random.LoadTyped.
 type RandomLoadMatch struct {
 	Id string `json:"id"`
+	Fragment *bool `json:"fragment,omitempty"`
+	Json *bool `json:"json,omitempty"`
+	Max *int `json:"max,omitempty"`
+	Min *int `json:"min,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
