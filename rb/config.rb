@@ -51,6 +51,10 @@ module NumbersConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+            {
               "name" => "number",
               "short" => "The number the fact is about",
               "type" => "`$NUMBER`",
@@ -66,6 +70,19 @@ module NumbersConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "from" => {
+              "number" => "number",
+              "type" => "type",
+            },
+            "name" => "id",
+            "parts" => [
+              "number",
+              "type",
+            ],
+            "sep" => "/",
+          },
           "name" => "get_number_fact",
           "op" => {
             "load" => {
@@ -118,9 +135,13 @@ module NumbersConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{number}/{type}",
-                  "parts" => [
-                    "{number}",
-                    "{type}",
+                  "segments" => [
+                    {
+                      "var" => "number",
+                    },
+                    {
+                      "var" => "type",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -135,6 +156,10 @@ module NumbersConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{number}",
+                    "{type}",
+                  ],
                 },
               ],
             },
@@ -170,6 +195,10 @@ module NumbersConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "get_number_trivia",
           "op" => {
             "load" => {
@@ -215,14 +244,16 @@ module NumbersConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{number}",
-                  "parts" => [
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "number" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fragment",
@@ -235,6 +266,9 @@ module NumbersConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -270,6 +304,10 @@ module NumbersConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "random",
           "op" => {
             "load" => {
@@ -319,15 +357,19 @@ module NumbersConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/random/{type}",
-                  "parts" => [
-                    "random",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "type" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "random",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "fragment",
@@ -341,6 +383,10 @@ module NumbersConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "random",
+                    "{id}",
+                  ],
                 },
               ],
             },

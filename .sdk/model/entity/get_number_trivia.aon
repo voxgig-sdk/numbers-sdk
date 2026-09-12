@@ -87,14 +87,16 @@ main: kit: entity: get_number_trivia: {
           }
           method: "GET"
           orig: "/{number}"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               number: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fragment"

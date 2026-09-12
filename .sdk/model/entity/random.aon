@@ -92,15 +92,19 @@ main: kit: entity: random: {
           }
           method: "GET"
           orig: "/random/{type}"
-          parts: [
-            "random"
-            "{id}"
-          ]
           rename: {
             param: {
               type: "id"
             }
           }
+          segments: [
+            {
+              lit: "random"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "fragment"

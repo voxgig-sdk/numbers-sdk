@@ -96,6 +96,7 @@ get_number_fact = client.GetNumberFact()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `bool` | No | Whether a fact was found for the requested number |
+| `id` | `str` | No |  |
 | `number` | `float` | No | The number the fact is about |
 | `text` | `str` | No | The fact about the number |
 | `type` | `str` | No | The type of the fact |

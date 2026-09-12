@@ -3,24 +3,24 @@
     "get_number_fact": {
       "GET_NUMBER_FACT00": {
         "found": true,
-        "number": 41,
-        "text": "s2a",
-        "type": "s2b",
-        "id": "GET_NUMBER_FACT00"
+        "id": "GET_NUMBER_FACT00",
+        "number": 52,
+        "text": "s35",
+        "type": "s36"
       },
       "GET_NUMBER_FACT01": {
         "found": true,
-        "number": 81,
-        "text": "s52",
-        "type": "s53",
-        "id": "GET_NUMBER_FACT01"
+        "id": "GET_NUMBER_FACT01",
+        "number": 102,
+        "text": "s67",
+        "type": "s68"
       },
       "GET_NUMBER_FACT02": {
         "found": true,
-        "number": 121,
-        "text": "s7a",
-        "type": "s7b",
-        "id": "GET_NUMBER_FACT02"
+        "id": "GET_NUMBER_FACT02",
+        "number": 152,
+        "text": "s99",
+        "type": "s9a"
       }
     }
   },
@@ -28,9 +28,9 @@
     "get_number_fact": {
       "get_number_fact_ref01": {
         "found": true,
-        "number": 161,
-        "text": "sa2",
-        "type": "sa3"
+        "number": 202,
+        "text": "scb",
+        "type": "scc"
       }
     }
   }

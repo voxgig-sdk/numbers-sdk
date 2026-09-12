@@ -13,6 +13,9 @@
 # @!attribute [rw] found
 #   @return [Boolean, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] number
 #   @return [Float, nil]
 #
@@ -23,6 +26,7 @@
 #   @return [String, nil]
 GetNumberFact = Struct.new(
   :found,
+  :id,
   :number,
   :text,
   :type,

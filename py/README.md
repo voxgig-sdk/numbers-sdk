@@ -55,8 +55,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    getnumbertrivia = client.GetNumberTrivia().load({"id": "example_id"})
-    print(getnumbertrivia)
+    getnumberfact = client.GetNumberFact().load({"number": "example", "type": "example"})
+    print(getnumberfact)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -124,8 +124,8 @@ client = NumbersSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-getnumbertrivia = client.GetNumberTrivia().load({"id": "test01"})
-# getnumbertrivia contains the mock response record
+getnumberfact = client.GetNumberFact().load({"number": "example", "type": "example"})
+# getnumberfact contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -244,6 +244,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found for the requested number |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The fact about the number |
 | `type` | The type of the fact |
@@ -300,6 +301,7 @@ Create an instance: `get_number_fact = client.GetNumberFact()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `bool` | Whether a fact was found for the requested number |
+| `id` | `str` |  |
 | `number` | `float` | The number the fact is about |
 | `text` | `str` | The fact about the number |
 | `type` | `str` | The type of the fact |
@@ -463,11 +465,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getnumbertrivia = client.GetNumberTrivia()
-getnumbertrivia.load({"id": "example_id"})
+getnumberfact = client.GetNumberFact()
+getnumberfact.load({"number": "example", "type": "example"})
 
-# getnumbertrivia.data_get() now returns the getnumbertrivia data from the last load
-# getnumbertrivia.match_get() returns the last match criteria
+# getnumberfact.data_get() now returns the getnumberfact data from the last load
+# getnumberfact.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

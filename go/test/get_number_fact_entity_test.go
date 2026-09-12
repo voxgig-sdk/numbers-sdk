@@ -50,7 +50,7 @@ func TestGetNumberFactEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		getNumberFactRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.get_number_fact", setup.data)))
+		getNumberFactRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.get_number_fact")))
 		var getNumberFactRef01Data map[string]any
 		if len(getNumberFactRef01DataRaw) > 0 {
 			getNumberFactRef01Data = core.ToMapAny(getNumberFactRef01DataRaw[0][1])
@@ -61,13 +61,19 @@ func TestGetNumberFactEntity(t *testing.T) {
 
 		// LOAD
 		getNumberFactRef01Ent := client.GetNumberFact(nil)
-		getNumberFactRef01MatchDt0 := map[string]any{}
+		getNumberFactRef01MatchDt0 := map[string]any{
+			"id": getNumberFactRef01Data["id"],
+		}
 		getNumberFactRef01DataDt0Loaded, err := getNumberFactRef01Ent.Load(getNumberFactRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if getNumberFactRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		getNumberFactRef01DataDt0LoadResult := core.ToMapAny(entityData(getNumberFactRef01DataDt0Loaded))
+		if getNumberFactRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if getNumberFactRef01DataDt0LoadResult["id"] != getNumberFactRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -97,7 +103,7 @@ func get_number_factBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"get_number_fact01", "get_number_fact02", "get_number_fact03", "number01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +131,22 @@ func get_number_factBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["NUMBERS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewNumbersSDK(core.ToMapAny(mergedOpts))
 	}

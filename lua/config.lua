@@ -39,6 +39,10 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "number",
             ["short"] = "The number the fact is about",
             ["type"] = "`$NUMBER`",
@@ -53,6 +57,19 @@ local function make_config()
             ["short"] = "The type of the fact",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["from"] = {
+            ["number"] = "number",
+            ["type"] = "type",
+          },
+          ["name"] = "id",
+          ["parts"] = {
+            "number",
+            "type",
+          },
+          ["sep"] = "/",
         },
         ["name"] = "get_number_fact",
         ["op"] = {
@@ -106,9 +123,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{number}/{type}",
-                ["parts"] = {
-                  "{number}",
-                  "{type}",
+                ["segments"] = {
+                  {
+                    ["var"] = "number",
+                  },
+                  {
+                    ["var"] = "type",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -122,6 +143,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{number}",
+                  "{type}",
                 },
               },
             },
@@ -157,6 +182,10 @@ local function make_config()
             ["short"] = "The type of the fact",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "get_number_trivia",
         ["op"] = {
@@ -203,12 +232,14 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/{number}",
-                ["parts"] = {
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["number"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -222,6 +253,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "{id}",
                 },
               },
             },
@@ -257,6 +291,10 @@ local function make_config()
             ["short"] = "The type of the fact",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "random",
         ["op"] = {
@@ -307,13 +345,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/random/{type}",
-                ["parts"] = {
-                  "random",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["type"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "random",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -328,6 +370,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "random",
+                  "{id}",
                 },
               },
             },

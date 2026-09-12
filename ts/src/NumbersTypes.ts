@@ -7,6 +7,7 @@
 
 export interface GetNumberFact {
   found?: boolean
+  id?: string
   number?: number
   text?: string
   type?: string

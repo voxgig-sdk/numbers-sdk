@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local getnumbertrivia, err = client:GetNumberTrivia():load({ id = "example_id" })
+local getnumberfact, err = client:GetNumberFact():load({ number = "example", type = "example" })
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:GetNumberTrivia():load({ id = "test01" })
+local result, err = client:GetNumberFact():load({ number = "example", type = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -228,6 +228,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found for the requested number |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The fact about the number |
 | `type` | The type of the fact |
@@ -284,6 +285,7 @@ Create an instance: `local get_number_fact = client:GetNumberFact(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `boolean` | Whether a fact was found for the requested number |
+| `id` | `string` |  |
 | `number` | `number` | The number the fact is about |
 | `text` | `string` | The fact about the number |
 | `type` | `string` | The type of the fact |
@@ -448,11 +450,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local getnumbertrivia = client:GetNumberTrivia()
-getnumbertrivia:load({ id = "example_id" })
+local getnumberfact = client:GetNumberFact()
+getnumberfact:load({ number = "example", type = "example" })
 
--- getnumbertrivia:data_get() now returns the getnumbertrivia data from the last load
--- getnumbertrivia:match_get() returns the last match criteria
+-- getnumberfact:data_get() now returns the getnumberfact data from the last load
+-- getnumberfact:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

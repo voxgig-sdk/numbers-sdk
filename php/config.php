@@ -65,6 +65,10 @@ class NumbersConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'number',
               'short' => 'The number the fact is about',
               'type' => '`$NUMBER`',
@@ -79,6 +83,19 @@ class NumbersConfig
               'short' => 'The type of the fact',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'from' => [
+              'number' => 'number',
+              'type' => 'type',
+            ],
+            'name' => 'id',
+            'parts' => [
+              'number',
+              'type',
+            ],
+            'sep' => '/',
           ],
           'name' => 'get_number_fact',
           'op' => [
@@ -132,9 +149,13 @@ class NumbersConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{number}/{type}',
-                  'parts' => [
-                    '{number}',
-                    '{type}',
+                  'segments' => [
+                    [
+                      'var' => 'number',
+                    ],
+                    [
+                      'var' => 'type',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -148,6 +169,10 @@ class NumbersConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{number}',
+                    '{type}',
                   ],
                 ],
               ],
@@ -183,6 +208,10 @@ class NumbersConfig
               'short' => 'The type of the fact',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'get_number_trivia',
           'op' => [
@@ -229,12 +258,14 @@ class NumbersConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{number}',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'number' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -248,6 +279,9 @@ class NumbersConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -283,6 +317,10 @@ class NumbersConfig
               'short' => 'The type of the fact',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'random',
           'op' => [
@@ -333,13 +371,17 @@ class NumbersConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/random/{type}',
-                  'parts' => [
-                    'random',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'type' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'random',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -354,6 +396,10 @@ class NumbersConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'random',
+                    '{id}',
                   ],
                 ],
               ],

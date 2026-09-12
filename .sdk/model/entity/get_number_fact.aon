@@ -12,6 +12,11 @@ main: kit: entity: get_number_fact: {
       type: "`$BOOLEAN`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "number"
       req: false
       short: "The number the fact is about"
@@ -30,6 +35,20 @@ main: kit: entity: get_number_fact: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    from: {
+      number: "number"
+      type: "type"
+    }
+    name: "id"
+    parts: [
+      "number"
+      "type"
+    ]
+    sep: "/"
+  }
 
   name: "get_number_fact"
   op: {
@@ -84,9 +103,13 @@ main: kit: entity: get_number_fact: {
           }
           method: "GET"
           orig: "/{number}/{type}"
-          parts: [
-            "{number}"
-            "{type}"
+          segments: [
+            {
+              var: "number"
+            }
+            {
+              var: "type"
+            }
           ]
           select: {
             exist: [

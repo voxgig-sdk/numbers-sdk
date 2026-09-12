@@ -43,6 +43,10 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
 						"name": "number",
 						"short": "The number the fact is about",
 						"type": "`$NUMBER`",
@@ -57,6 +61,19 @@ func MakeConfig() map[string]any {
 						"short": "The type of the fact",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"from": map[string]any{
+						"number": "number",
+						"type": "type",
+					},
+					"name": "id",
+					"parts": []any{
+						"number",
+						"type",
+					},
+					"sep": "/",
 				},
 				"name": "get_number_fact",
 				"op": map[string]any{
@@ -110,9 +127,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{number}/{type}",
-								"parts": []any{
-									"{number}",
-									"{type}",
+								"segments": []any{
+									map[string]any{
+										"var": "number",
+									},
+									map[string]any{
+										"var": "type",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -126,6 +147,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"{number}",
+									"{type}",
 								},
 							},
 						},
@@ -161,6 +186,10 @@ func MakeConfig() map[string]any {
 						"short": "The type of the fact",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "get_number_trivia",
 				"op": map[string]any{
@@ -207,12 +236,14 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/{number}",
-								"parts": []any{
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"number": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -226,6 +257,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"{id}",
 								},
 							},
 						},
@@ -261,6 +295,10 @@ func MakeConfig() map[string]any {
 						"short": "The type of the fact",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "random",
 				"op": map[string]any{
@@ -311,13 +349,17 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/random/{type}",
-								"parts": []any{
-									"random",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"type": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "random",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -333,6 +375,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"random",
+									"{id}",
+								},
 							},
 						},
 					},
@@ -343,6 +389,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

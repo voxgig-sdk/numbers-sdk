@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  getnumbertrivia = client.GetNumberTrivia.load({ "id" => "example_id" })
+  getnumberfact = client.GetNumberFact.load({ "number" => "example", "type" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -112,18 +112,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = NumbersSDK.test({
-  "entity" => { "getnumbertrivia" => { "test01" => { "id" => "test01" } } },
-})
+client = NumbersSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-getnumbertrivia = client.GetNumberTrivia.load({ "id" => "test01" })
-puts getnumbertrivia
+getnumberfact = client.GetNumberFact.load({ "number" => "example", "type" => "example" })
+puts getnumberfact
 ```
 
 ### Use a custom fetch function
@@ -241,6 +238,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found for the requested number |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The fact about the number |
 | `type` | The type of the fact |
@@ -297,6 +295,7 @@ Create an instance: `get_number_fact = client.GetNumberFact`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `Boolean` | Whether a fact was found for the requested number |
+| `id` | `String` |  |
 | `number` | `Float` | The number the fact is about |
 | `text` | `String` | The fact about the number |
 | `type` | `String` | The type of the fact |
@@ -464,11 +463,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getnumbertrivia = client.GetNumberTrivia
-getnumbertrivia.load({ "id" => "example_id" })
+getnumberfact = client.GetNumberFact
+getnumberfact.load({ "number" => "example", "type" => "example" })
 
-# getnumbertrivia.data_get now returns the getnumbertrivia data from the last load
-# getnumbertrivia.match_get returns the last match criteria
+# getnumberfact.data_get now returns the getnumberfact data from the last load
+# getnumberfact.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

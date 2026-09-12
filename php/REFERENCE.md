@@ -101,6 +101,7 @@ $get_number_fact = $client->GetNumberFact();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `bool` | No | Whether a fact was found for the requested number |
+| `id` | `string` | No |  |
 | `number` | `float` | No | The number the fact is about |
 | `text` | `string` | No | The fact about the number |
 | `type` | `string` | No | The type of the fact |

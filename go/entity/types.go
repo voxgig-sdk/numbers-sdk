@@ -15,6 +15,7 @@ import (
 // GetNumberFact is the typed data model for the get_number_fact entity.
 type GetNumberFact struct {
 	Found *bool `json:"found,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Number *float64 `json:"number,omitempty"`
 	Text *string `json:"text,omitempty"`
 	Type *string `json:"type,omitempty"`

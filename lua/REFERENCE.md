@@ -99,6 +99,7 @@ local get_number_fact = client:GetNumberFact(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `found` | `boolean` | No | Whether a fact was found for the requested number |
+| `id` | `string` | No |  |
 | `number` | `number` | No | The number the fact is about |
 | `text` | `string` | No | The fact about the number |
 | `type` | `string` | No | The type of the fact |

@@ -18,6 +18,7 @@ from typing import TypedDict, Any
 
 class GetNumberFact(TypedDict, total=False):
     found: bool
+    id: str
     number: float
     text: str
     type: str

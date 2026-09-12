@@ -8,6 +8,7 @@
 
 ---@class GetNumberFact
 ---@field found? boolean
+---@field id? string
 ---@field number? number
 ---@field text? string
 ---@field type? string

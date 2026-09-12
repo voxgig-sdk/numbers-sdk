@@ -1,6 +1,14 @@
 # Numbers SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -60,6 +68,10 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+          {
             "name": "number",
             "short": "The number the fact is about",
             "type": "`$NUMBER`",
@@ -75,6 +87,19 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "from": {
+            "number": "number",
+            "type": "type",
+          },
+          "name": "id",
+          "parts": [
+            "number",
+            "type",
+          ],
+          "sep": "/",
+        },
         "name": "get_number_fact",
         "op": {
           "load": {
@@ -127,9 +152,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{number}/{type}",
-                "parts": [
-                  "{number}",
-                  "{type}",
+                "segments": [
+                  {
+                    "var": "number",
+                  },
+                  {
+                    "var": "type",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -144,6 +173,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "{number}",
+                  "{type}",
+                ],
               },
             ],
           },
@@ -179,6 +212,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "get_number_trivia",
         "op": {
           "load": {
@@ -224,14 +261,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/{number}",
-                "parts": [
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "number": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fragment",
@@ -244,6 +283,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "{id}",
+                ],
               },
             ],
           },
@@ -279,6 +321,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "random",
         "op": {
           "load": {
@@ -328,15 +374,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/random/{type}",
-                "parts": [
-                  "random",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "type": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "random",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "fragment",
@@ -350,6 +400,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "random",
+                  "{id}",
+                ],
               },
             ],
           },

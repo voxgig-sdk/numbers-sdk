@@ -53,8 +53,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const getnumbertrivia = await client.GetNumberTrivia().load({ id: "example_id" })
-  console.log(getnumbertrivia)
+  const getnumberfact = await client.GetNumberFact().load({ number: "example", type: "example" })
+  console.log(getnumberfact)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -120,10 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NumbersSDK.test()
 
-const getnumbertrivia = await client.GetNumberTrivia().load({ id: 'test01' })
-// getnumbertrivia is the entity, populated with mock response data
-// — call getnumbertrivia.data() for the record itself
-console.log(getnumbertrivia)
+const getnumberfact = await client.GetNumberFact().load({ number: 'example_number', type: 'example_type' })
+// getnumberfact is the entity, populated with mock response data
+// — call getnumberfact.data() for the record itself
+console.log(getnumberfact)
 ```
 
 You can also use the instance method:
@@ -138,10 +138,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.GetNumberTrivia()
+const entity = client.GetNumberFact()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.load({ number: 'example_number', type: 'example_type' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -288,6 +288,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `found` | Whether a fact was found for the requested number |
+| `id` |  |
 | `number` | The number the fact is about |
 | `text` | The fact about the number |
 | `type` | The type of the fact |
@@ -344,6 +345,7 @@ Create an instance: `const get_number_fact = client.GetNumberFact()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `found` | `boolean` | Whether a fact was found for the requested number |
+| `id` | `string` |  |
 | `number` | `number` | The number the fact is about |
 | `text` | `string` | The fact about the number |
 | `type` | `string` | The type of the fact |
@@ -501,11 +503,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const getnumbertrivia = client.GetNumberTrivia()
-await getnumbertrivia.load({ id: "example_id" })
+const getnumberfact = client.GetNumberFact()
+await getnumberfact.load({ number: "example", type: "example" })
 
-// getnumbertrivia.data() now returns the getnumbertrivia data from the last `load`
-// getnumbertrivia.match() returns { id: "example_id" }
+// getnumberfact.data() now returns the getnumberfact data from the last `load`
+// getnumberfact.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

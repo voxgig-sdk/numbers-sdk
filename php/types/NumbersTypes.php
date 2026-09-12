@@ -16,6 +16,7 @@ declare(strict_types=1);
 class GetNumberFact
 {
     public ?bool $found = null;
+    public ?string $id = null;
     public ?float $number = null;
     public ?string $text = null;
     public ?string $type = null;
