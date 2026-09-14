@@ -105,7 +105,7 @@ local result, err = client:GetNumberFact():load({ number = "example", type = "ex
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
+| TypeScript | `@voxgig-sdk/numbers-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
 | Python | `voxgig-sdk-numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
 | PHP | `voxgig-sdk/numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/numbers-sdk/go` | `go get github.com/voxgig-sdk/numbers-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:GetNumberFact():load({ number = "example", type = "ex
 ### TypeScript
 
 ```ts
-import { NumbersSDK } from '@voxgig-sdk/numbers'
+import { NumbersSDK } from '@voxgig-sdk/numbers-sdk'
 
 const client = new NumbersSDK()
 

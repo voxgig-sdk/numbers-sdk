@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NumbersSDK } from '@voxgig-sdk/numbers'
+import { NumbersSDK } from '@voxgig-sdk/numbers-sdk'
 
 const client = new NumbersSDK()
 ```
@@ -493,7 +493,7 @@ numbers/
 Import the SDK from the package root:
 
 ```ts
-import { NumbersSDK } from '@voxgig-sdk/numbers'
+import { NumbersSDK } from '@voxgig-sdk/numbers-sdk'
 ```
 
 ### Entity state
