@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Numbers SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class NumbersFeatures
@@ -14,8 +17,14 @@ class NumbersFeatures
         switch ($name) {
             case "base":
                 return new NumbersBaseFeature();
+            case "ratelimit":
+                return new NumbersRatelimitFeature();
+            case "retry":
+                return new NumbersRetryFeature();
             case "test":
                 return new NumbersTestFeature();
+            case "timeout":
+                return new NumbersTimeoutFeature();
             default:
                 return new NumbersBaseFeature();
         }
@@ -31,7 +40,10 @@ class NumbersFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

@@ -33,5 +33,105 @@
         "type": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /random/{type}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomNumberFact",
+        "parameters": [
+          {
+            "description": "The type of fact to return",
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "enum": [
+                "trivia",
+                "math",
+                "date",
+                "year"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Minimum number for random selection",
+            "in": "query",
+            "name": "min",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number for random selection",
+            "in": "query",
+            "name": "max",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return the fact as a sentence fragment",
+            "in": "query",
+            "name": "fragment",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return the result as JSON",
+            "in": "query",
+            "name": "json",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "found": {
+                      "description": "Whether a fact was found",
+                      "type": "boolean"
+                    },
+                    "number": {
+                      "description": "The number the fact is about",
+                      "type": "number"
+                    },
+                    "text": {
+                      "description": "The fact about the number",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of the fact",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful response with a random number fact"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

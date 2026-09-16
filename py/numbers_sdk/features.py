@@ -1,12 +1,18 @@
 # Numbers SDK feature factory
 
 from numbers_sdk.feature.base_feature import NumbersBaseFeature
+from numbers_sdk.feature.ratelimit_feature import NumbersRatelimitFeature
+from numbers_sdk.feature.retry_feature import NumbersRetryFeature
 from numbers_sdk.feature.test_feature import NumbersTestFeature
+from numbers_sdk.feature.timeout_feature import NumbersTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: NumbersBaseFeature(),
+    "ratelimit": lambda: NumbersRatelimitFeature(),
+    "retry": lambda: NumbersRetryFeature(),
     "test": lambda: NumbersTestFeature(),
+    "timeout": lambda: NumbersTimeoutFeature(),
 }
 
 

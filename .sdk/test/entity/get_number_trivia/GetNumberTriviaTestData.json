@@ -33,5 +33,108 @@
         "type": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /{number}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getNumberTrivia",
+        "parameters": [
+          {
+            "description": "The number to get a trivia fact about. Can be an integer or 'random'.",
+            "examples": {
+              "integer": {
+                "summary": "A specific number",
+                "value": "42"
+              },
+              "random": {
+                "summary": "Random number",
+                "value": "random"
+              }
+            },
+            "in": "path",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return the fact as a sentence fragment",
+            "in": "query",
+            "name": "fragment",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Specifies what to return if the number is not found",
+            "in": "query",
+            "name": "notfound",
+            "required": false,
+            "schema": {
+              "default": "default",
+              "enum": [
+                "default",
+                "floor",
+                "ceil"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return the result as JSON",
+            "in": "query",
+            "name": "json",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "found": {
+                      "description": "Whether a fact was found for the requested number",
+                      "type": "boolean"
+                    },
+                    "number": {
+                      "description": "The number the fact is about",
+                      "type": "number"
+                    },
+                    "text": {
+                      "description": "The trivia fact about the number",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of the fact",
+                      "example": "trivia",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "example": "42 is the answer to the Ultimate Question of Life, the Universe, and Everything.",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful response with a number trivia fact"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

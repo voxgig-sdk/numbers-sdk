@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.NUMBERS_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'get_number_trivia.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'get_number_trivia.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "found", "req": false, "short": "Whether a fact was found for the requested number", "type": "`$BOOLEAN`", "index$": 0 }, { "active": true, "name": "id", "req": false, "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "number", "req": false, "short": "The number the fact is about", "type": "`$NUMBER`", "index$": 2 }, { "active": true, "name": "text", "req": false, "short": "The trivia fact about the number", "type": "`$STRING`", "index$": 3 }, { "active": true, "name": "type", "req": false, "short": "The type of the fact", "type": "`$STRING`", "index$": 4 }], "id": { "field": "id", "name": "id" }, "name": "get_number_trivia", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "example": "42", "kind": "param", "name": "id", "orig": "number", "reqd": true, "type": "`$STRING`", "index$": 0 }], "query": [{ "active": true, "example": false, "kind": "query", "name": "fragment", "orig": "fragment", "reqd": false, "type": "`$BOOLEAN`", "index$": 0 }, { "active": true, "example": false, "kind": "query", "name": "json", "orig": "json", "reqd": false, "type": "`$BOOLEAN`", "index$": 1 }, { "active": true, "example": "default", "kind": "query", "name": "notfound", "orig": "notfound", "reqd": false, "type": "`$STRING`", "index$": 2 }] }, "contract": { "id": "GET /{number}", "json": "{\"operationId\":\"getNumberTrivia\",\"parameters\":[{\"description\":\"The number to get a trivia fact about. Can be an integer or 'random'.\",\"examples\":{\"integer\":{\"summary\":\"A specific number\",\"value\":\"42\"},\"random\":{\"summary\":\"Random number\",\"value\":\"random\"}},\"in\":\"path\",\"name\":\"number\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Return the fact as a sentence fragment\",\"in\":\"query\",\"name\":\"fragment\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}},{\"description\":\"Specifies what to return if the number is not found\",\"in\":\"query\",\"name\":\"notfound\",\"required\":false,\"schema\":{\"default\":\"default\",\"enum\":[\"default\",\"floor\",\"ceil\"],\"type\":\"string\"}},{\"description\":\"Return the result as JSON\",\"in\":\"query\",\"name\":\"json\",\"required\":false,\"schema\":{\"default\":false,\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"found\":{\"description\":\"Whether a fact was found for the requested number\",\"type\":\"boolean\"},\"number\":{\"description\":\"The number the fact is about\",\"type\":\"number\"},\"text\":{\"description\":\"The trivia fact about the number\",\"type\":\"string\"},\"type\":{\"description\":\"The type of the fact\",\"example\":\"trivia\",\"type\":\"string\"}},\"type\":\"object\"}},\"text/plain\":{\"schema\":{\"example\":\"42 is the answer to the Ultimate Question of Life, the Universe, and Everything.\",\"type\":\"string\"}}},\"description\":\"Successful response with a number trivia fact\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/{number}", "rename": { "param": { "number": "id" } }, "segments": [{ "var": "id" }], "select": { "exist": ["fragment", "id", "json", "notfound"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "get_number_trivia", "name__orig": "get_number_trivia", "Name": "GetNumberTrivia", "name_": "get_number_trivia", "name-": "get-number-trivia", "NAME": "GET_NUMBER_TRIVIA", "index$": 1 }, { "active": true, "entity": "get_number_trivia", "key$": "BasicGetNumberTriviaFlow", "kind": "basic", "name": "BasicGetNumberTriviaFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "get_number_trivia_ref01", "srcdatavar": "get_number_trivia_ref01_data", "suffix": "_dt0" }, "match": { "id": "get_number_trivia01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-get_number_trivia_ref01" } }], "index$": 0 }] }, 'GetNumberTrivia');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -103,12 +101,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID': idmap,
         'NUMBERS_TEST_LIVE': 'FALSE',
@@ -116,7 +108,13 @@ function basicSetup(extra) {
     });
     idmap = env['NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID'];
     const live = 'TRUE' === env.NUMBERS_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['NUMBERS_TEST_GET_NUMBER_TRIVIA_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.NumbersSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -127,7 +125,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -139,7 +138,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.NUMBERS_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;
