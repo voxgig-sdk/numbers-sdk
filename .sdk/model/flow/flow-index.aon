@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicGetNumberFactFlow.aon"
-@"BasicGetNumberTriviaFlow.aon"
-@"BasicRandomFlow.aon"
+@"./BasicGetNumberFactFlow.aon"
+@"./BasicGetNumberTriviaFlow.aon"
+@"./BasicRandomFlow.aon"

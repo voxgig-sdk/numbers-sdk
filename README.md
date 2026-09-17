@@ -105,12 +105,12 @@ local result, err = client:GetNumberFact():load({ number = "example", type = "ex
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/numbers-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
-| Python | `voxgig-sdk-numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
-| PHP | `voxgig-sdk/numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
+| TypeScript | `@voxgig-sdk/numbers-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/tags) |
+| Python | `voxgig-sdk-numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/tags) |
+| PHP | `voxgig-sdk/numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/numbers-sdk/go` | `go get github.com/voxgig-sdk/numbers-sdk/go@latest` |
-| Ruby | `voxgig-sdk-numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
-| Lua | `voxgig-sdk-numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/releases) |
+| Ruby | `voxgig-sdk-numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/tags) |
+| Lua | `voxgig-sdk-numbers` | publish pending — [install from git tag](https://github.com/voxgig-sdk/numbers-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/numbers-sdk/go-cli` | `go install github.com/voxgig-sdk/numbers-sdk/go-cli/cmd/numbers@latest` |
 | Go MCP server | `github.com/voxgig-sdk/numbers-sdk/go-mcp` | `go get github.com/voxgig-sdk/numbers-sdk/go-mcp@latest` |
 

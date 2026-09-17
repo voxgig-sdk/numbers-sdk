@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      get_number_fact: {
-      },
-
-      get_number_trivia: {
-      },
-
-      random: {
-      },
-
+        get_number_fact: {
+        },
+  
+        get_number_trivia: {
+        },
+  
+        random: {
+        },
+  
     }
   }
 
